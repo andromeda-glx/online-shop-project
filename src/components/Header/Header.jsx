@@ -6,7 +6,7 @@ import TitleLogo from "../TitleLogo";
 
 export default function Header() {
     return (
-        <header className="px-10 bg-gray-100 flex justify-between items-center h-[55px] max-w-[1400px] mx-auto">
+        <header className="px-[67px] bg-gray-100 flex justify-between items-center h-[55px] max-w-[1500px] mx-auto">
             <div className="flex items-center gap-x-6">
                 <TitleLogo />
                 <Navbar />

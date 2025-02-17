@@ -1,6 +1,6 @@
 import Header from './components/Header/Header'
 import TopHeader from './components/Header/TopHeader'
-import Main from './components/Main'
+import Main from './components/Main/Main'
 
 function App() {
     return (
