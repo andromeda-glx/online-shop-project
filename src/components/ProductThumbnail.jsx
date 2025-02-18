@@ -5,7 +5,7 @@ import Rating from "./Rating";
 export default function ProductThumbnail({ imgURL, title, price, description, rating }) {
     return (
         <div className="w-[100%] flex flex-col gap-y-3">
-            <div className="w-[100%] relative">
+            <div className="w-[100%] relative hover:scale-101 cursor-pointer transition-transform">
                 <img className="w-[100%]" src={imgURL} alt="" />
                 <FavoriteIcon />
             </div>
