@@ -4,6 +4,7 @@
 @theme{
     --font-outfit: "Outfit", arial;
     --color-main-theme: #FE8A00;
+    --color-secondary-theme: #F61B5A;
 }
 
 body {
