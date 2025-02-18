@@ -1,16 +1,16 @@
-import Footer from './components/Footer/Footer'
-import Header from './components/Header/Header'
-import TopHeader from './components/Header/TopHeader'
+import { BrowserRouter, Route, Routes } from 'react-router'
+import MainLayout from './components/Pages/MainLayout'
 import Main from './components/Main/Main'
 
 function App() {
     return (
-        <>
-            <TopHeader offer={"Get 50% Off on Selected Items"} phoneNumber={"+91 (720) 090 1896"} />
-            <Header />
-            <Main />
-            <Footer />
-        </>
+        <BrowserRouter basename='/online-shop-project/'>
+            <Routes>
+                <Route path='/' element={<MainLayout />}>
+                    <Route index element={<Main />} />
+                </Route>
+            </Routes>
+        </BrowserRouter>
     )
 }
 
