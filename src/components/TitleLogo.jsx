@@ -6,8 +6,9 @@ export default function TitleLogo() {
             <div className="">
                 <img src={img} alt="" />
             </div>
-            <span className="text-2xl text-main-theme font-semibold">
-                Minimal <span className="text-secondary-theme">Shop</span>ping
+            <span className="text-2xl text-main-theme font-semibold hidden md:block">
+                Minimal 
+                <span className="text-secondary-theme">Shop</span>ping
             </span>
         </div>
     )
