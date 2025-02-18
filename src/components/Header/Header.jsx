@@ -14,11 +14,11 @@ export default function Header() {
             <div className="flex gap-x-6">
                 <div className="flex items-center gap-x-2">
                     <FontAwesomeIcon icon={faUser} />
-                    <span>Account</span>
+                    <span className="hidden md:inline-block">Account</span>
                 </div>
                 <div className="flex items-center gap-x-2">
                     <FontAwesomeIcon icon={faShoppingCart} />
-                    <span>Cart</span>
+                    <span className="hidden md:inline-block">Cart</span>
                 </div>
             </div>
         </header>
