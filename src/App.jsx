@@ -1,13 +1,13 @@
 import { BrowserRouter, Route, Routes } from 'react-router'
-import MainLayout from './components/Pages/MainLayout'
-import Main from './components/Main/Main'
+import MainLayout from './Pages/MainLayout'
+import MainPage from './Pages/MainPage'
 
 function App() {
     return (
         <BrowserRouter basename='/online-shop-project/'>
             <Routes>
                 <Route path='/' element={<MainLayout />}>
-                    <Route index element={<Main />} />
+                    <Route index element={<MainPage />} />
                 </Route>
             </Routes>
         </BrowserRouter>
