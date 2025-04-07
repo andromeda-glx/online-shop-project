@@ -6,8 +6,11 @@ import formattedPrice from "../utils/format-price";
 import Spinner from "./Spinner";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping, faRotateLeft, faTruck } from "@fortawesome/free-solid-svg-icons";
+import SizeButton from "./SizeButton";
+import { useState } from "react";
 
 export default function ProductDetails() {
+    const [sizeChecked, setSizeChecked] = useState('s');
     const productId = useProductModal(state => state.productId);
     const setProductModalOpen = useProductModal(state => state.setProductModalOpen);
 
@@ -39,6 +42,43 @@ export default function ProductDetails() {
                                 {product.description}
                             </p>
                             <Rating rating={product.rating} />
+                            <div className="flex gap-x-3">
+                                <SizeButton
+                                    id="s"
+                                    name="s"
+                                    sizeChecked={sizeChecked}
+                                    setSizeChecked={setSizeChecked}
+                                    text="S"
+                                />
+                                <SizeButton
+                                    id="m"
+                                    name="m"
+                                    sizeChecked={sizeChecked}
+                                    setSizeChecked={setSizeChecked}
+                                    text="M"
+                                />
+                                <SizeButton
+                                    id="l"
+                                    name="l"
+                                    sizeChecked={sizeChecked}
+                                    setSizeChecked={setSizeChecked}
+                                    text="L"
+                                />
+                                <SizeButton
+                                    id="xl"
+                                    name="xl"
+                                    sizeChecked={sizeChecked}
+                                    setSizeChecked={setSizeChecked}
+                                    text="XL"
+                                />
+                                <SizeButton
+                                    id="xxl"
+                                    name="xxl"
+                                    sizeChecked={sizeChecked}
+                                    text="XXL"
+                                    setSizeChecked={setSizeChecked}
+                                />
+                            </div>
                         </div>
                 }
             </div>
