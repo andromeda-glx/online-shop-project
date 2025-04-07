@@ -14,7 +14,7 @@ export default function Modal({ style, isOpen, onClose, children, modalName }) {
     return (
         createPortal(
             <div className={`bg-black/30 inset-0 fixed z-5`}>
-                <div ref={modalRef} className={`bg-white p-15 rounded-xl absolute z-10 ${style}`}>
+                <div ref={modalRef} className={`bg-white p-5 rounded-xl absolute z-10 overflow-y-auto ${style}`}>
                     <button
                         type="button"
                         onClick={onClose}

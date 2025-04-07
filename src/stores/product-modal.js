@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-const useProductModal = create((set, get) => {
+const useProductModal = create((set) => {
   return {
     productModalOpen: false,
     productId: null,
