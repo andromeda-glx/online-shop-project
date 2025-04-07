@@ -19,7 +19,7 @@ export default function MainLayout() {
             <Header
                 handleCartClick={() => setModalOpen(true)}
             />
-            <main className="px-[67px] max-w-[1500px] w-[100%] mx-auto bg-gray-100 min-h-dvh flex flex-col gap-y-10">
+            <main className="px-[67px] max-w-[1500px] w-[100%] mx-auto bg-gray-50 min-h-dvh flex flex-col gap-y-10">
                 <Outlet />
             </main>
             <Footer />
