@@ -22,7 +22,7 @@ export default function Rating({rating}) {
     }
 
     return (
-        <div>
+        <div className="text-main-theme">
             {generateStars()}
         </div>
     )

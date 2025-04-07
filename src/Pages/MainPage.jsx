@@ -11,7 +11,6 @@ export default function MainPage() {
     })
 
     const products = productsQuery.data?.flat();
-    console.log(products);
 
     return (
         <>

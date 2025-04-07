@@ -1,11 +1,20 @@
 /* eslint-disable react/prop-types */
+import useProductModal from "../stores/product-modal";
 import FavoriteIcon from "./FavoriteIcon";
 import Rating from "./Rating";
 
-export default function Product({product, handleClick}) {
-    const {id, title, thumbnail, price, rating, description} = product;
+export default function Product({ product }) {
+    const { id, title, thumbnail, price, rating, description } = product;
+    const setProductId = useProductModal((state) => state.setProductId);
+    const setProductModalOpen = useProductModal((state) => state.setProductModalOpen)
     return (
-        <div className="w-[100%] flex flex-col gap-y-3" onClick={() => handleClick(id)}>
+        <div
+            className="w-[100%] flex flex-col gap-y-3"
+            onClick={() => {
+                setProductId(id);
+                setProductModalOpen(true);
+            }}
+        >
             <div className="w-[100%] relative hover:scale-101 cursor-pointer transition-transform">
                 <img className="w-[100%]" src={thumbnail} alt="" />
                 <FavoriteIcon />
@@ -18,7 +27,7 @@ export default function Product({product, handleClick}) {
                 <div className="clamp-text text-sm text-gray-500">
                     {description}
                 </div>
-                <div className="text-main-theme">
+                <div>
                     <Rating rating={rating} />
                 </div>
             </div>

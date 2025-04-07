@@ -15,3 +15,8 @@ export async function getProducts(){
 
     return data;
 }
+
+export async function getProduct(productId){
+    const data = axios.get(`https://dummyjson.com/products/${productId}`);
+    return data;
+}

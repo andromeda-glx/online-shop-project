@@ -6,10 +6,13 @@ import TopHeader from "../components/Header/TopHeader";
 import { useState } from "react";
 import Modal from "../components/Modal";
 import Checkout from "../components/Checkout";
+import useProductModal from "../stores/product-modal";
+import ProductDetails from "../components/ProductDetails";
 
 export default function MainLayout() {
     const [checkoutModalOpen, setCheckoutModalOpen] = useState(false);
-    const [productModalOpen, setProductModalOpen] = useState(false);
+    const setProductModalOpen = useProductModal((state) => state.setProductModalOpen);
+    const productModalOpen = useProductModal((state) => state.productModalOpen);
 
     return (
         <>
@@ -35,9 +38,10 @@ export default function MainLayout() {
             <Modal
                 display={"flex justify-end items-center"}
                 isOpen={productModalOpen}
-                onClose={() => {setProductModalOpen(false)}}
+                onClose={() => setProductModalOpen(false)}
                 modalName={"product-modal"}
             >
+                <ProductDetails />
             </Modal>
         </>
     )
