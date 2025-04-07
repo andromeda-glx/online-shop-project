@@ -4,6 +4,8 @@ import { faStar as faStarEmpty } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function Rating({rating}) {
+    rating = Math.round(rating);
+
     function generateStars(){
         const stars = new Array(5);
 

@@ -2,7 +2,7 @@ import img from "../assets/images/Rectangle 4.png"
 import img2 from "../assets/images/Rectangle 5.png"
 import img3 from "../assets/images/Rectangle 6.png"
 import img4 from "../assets/images/Rectangle 7.png"
-import ProductThumbnail from "./ProductThumbnail"
+import ProductThumbnail from "./Product"
 
 export default function Products() {
     return (
