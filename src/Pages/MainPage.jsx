@@ -3,6 +3,8 @@ import Products from "../components/Products";
 import featuredImage from "../assets/images/offer-feature-banner.jpg"
 
 export default function MainPage() {
+    
+
     return (
         <>
             <div style={{ backgroundImage: `url(${featuredImage})` }} className={`w-[100%] h-[360px] bg-no-repeat flex justify-center items-center bg-center`}>
