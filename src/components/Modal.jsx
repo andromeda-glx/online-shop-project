@@ -3,7 +3,7 @@ import useOnClickOutside from "../hooks/useOnClickOutside";
 import { createPortal } from "react-dom";
 
 /* eslint-disable react/prop-types */
-export default function Modal({ display, isOpen, onClose, children }) {
+export default function Modal({ display, isOpen, onClose, children, modalName }) {
     const modalRef = useRef(null);
 
     useOnClickOutside(modalRef, onClose);
@@ -25,6 +25,6 @@ export default function Modal({ display, isOpen, onClose, children }) {
                     {children}
                 </div>
             </div>
-        , document.body, "checkout-modal")
+        , document.body, modalName)
     )
 }

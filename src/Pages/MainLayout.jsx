@@ -8,7 +8,8 @@ import Modal from "../components/Modal";
 import Checkout from "../components/Checkout";
 
 export default function MainLayout() {
-    const [modalOpen, setModalOpen] = useState(false);
+    const [checkoutModalOpen, setCheckoutModalOpen] = useState(false);
+    const [productModalOpen, setProductModalOpen] = useState(false);
 
     return (
         <>
@@ -17,7 +18,7 @@ export default function MainLayout() {
                 phoneNumber={"+91 (720) 090 1896"}
             />
             <Header
-                handleCartClick={() => setModalOpen(true)}
+                handleCartClick={() => setCheckoutModalOpen(true)}
             />
             <main className="px-[67px] max-w-[1500px] w-[100%] mx-auto bg-gray-50 min-h-dvh flex flex-col gap-y-10">
                 <Outlet />
@@ -25,10 +26,19 @@ export default function MainLayout() {
             <Footer />
             <Modal
                 display={"flex justify-center items-center"}
-                children={<Checkout />}
-                isOpen={modalOpen}
-                onClose={() => setModalOpen(false)}
-            />
+                isOpen={checkoutModalOpen}
+                onClose={() => setCheckoutModalOpen(false)}
+                modalName={"checkout-modal"}
+            >
+                <Checkout />
+            </Modal>
+            <Modal
+                display={"flex justify-end items-center"}
+                isOpen={productModalOpen}
+                onClose={() => {setProductModalOpen(false)}}
+                modalName={"product-modal"}
+            >
+            </Modal>
         </>
     )
 }

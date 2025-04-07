@@ -2,10 +2,10 @@
 import FavoriteIcon from "./FavoriteIcon";
 import Rating from "./Rating";
 
-export default function Product({product}) {
+export default function Product({product, handleClick}) {
     const {id, title, thumbnail, price, rating, description} = product;
     return (
-        <div className="w-[100%] flex flex-col gap-y-3">
+        <div className="w-[100%] flex flex-col gap-y-3" onClick={() => handleClick(id)}>
             <div className="w-[100%] relative hover:scale-101 cursor-pointer transition-transform">
                 <img className="w-[100%]" src={thumbnail} alt="" />
                 <FavoriteIcon />
