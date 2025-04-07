@@ -4,7 +4,7 @@ import Footer from "../components/Footer/Footer";
 import Header from "../components/Header/Header";
 import TopHeader from "../components/Header/TopHeader";
 import { useState } from "react";
-import CheckoutModal from "../components/CheckoutModal";
+import Modal from "../components/Modal";
 import Checkout from "../components/Checkout";
 
 export default function MainLayout() {
@@ -23,7 +23,8 @@ export default function MainLayout() {
                 <Outlet />
             </main>
             <Footer />
-            <CheckoutModal
+            <Modal
+                display={"flex justify-center items-center"}
                 children={<Checkout />}
                 isOpen={modalOpen}
                 onClose={() => setModalOpen(false)}
