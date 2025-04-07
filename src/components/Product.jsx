@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import useProductModal from "../stores/product-modal";
+import formatPrice from "../utils/format-price";
 import FavoriteIcon from "./FavoriteIcon";
 import Rating from "./Rating";
 
@@ -22,7 +23,7 @@ export default function Product({ product }) {
             <div className="flex flex-col items-start gap-y-3">
                 <div className="flex justify-between w-[100%]">
                     <h2 className="clamp-text w-[60%] text-lg">{title}</h2>
-                    <p className="text-xl">{price}$</p>
+                    <p className="text-xl">{formatPrice(price)}$</p>
                 </div>
                 <div className="clamp-text text-sm text-gray-500">
                     {description}

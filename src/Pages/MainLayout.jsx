@@ -28,7 +28,7 @@ export default function MainLayout() {
             </main>
             <Footer />
             <Modal
-                display={"flex justify-center items-center"}
+                style={"top-[50%] left-[50%] translate-[-50%]"}
                 isOpen={checkoutModalOpen}
                 onClose={() => setCheckoutModalOpen(false)}
                 modalName={"checkout-modal"}
@@ -36,7 +36,7 @@ export default function MainLayout() {
                 <Checkout />
             </Modal>
             <Modal
-                display={"flex justify-end items-center"}
+                style={"top-5 bottom-5 right-5 w-[50%] max-w-[500px]"}
                 isOpen={productModalOpen}
                 onClose={() => setProductModalOpen(false)}
                 modalName={"product-modal"}

@@ -3,7 +3,7 @@ import useOnClickOutside from "../hooks/useOnClickOutside";
 import { createPortal } from "react-dom";
 
 /* eslint-disable react/prop-types */
-export default function Modal({ display, isOpen, onClose, children, modalName }) {
+export default function Modal({ style, isOpen, onClose, children, modalName }) {
     const modalRef = useRef(null);
 
     useOnClickOutside(modalRef, onClose);
@@ -13,8 +13,8 @@ export default function Modal({ display, isOpen, onClose, children, modalName })
     }
     return (
         createPortal(
-            <div className={`bg-black/30 inset-0 fixed z-5 ${display}`}>
-                <div ref={modalRef} className="bg-white p-15 rounded-xl relative">
+            <div className={`bg-black/30 inset-0 fixed z-5`}>
+                <div ref={modalRef} className={`bg-white p-15 rounded-xl absolute z-10 ${style}`}>
                     <button
                         type="button"
                         onClick={onClose}
