@@ -13,7 +13,7 @@ export default function SizeButton({ id, name, text, sizeChecked, setSizeChecked
                 name="size"
                 id={id}
                 className="hidden"
-                checked={sizeChecked === name}
+                defaultChecked={sizeChecked === name}
             />
         </div>
     )

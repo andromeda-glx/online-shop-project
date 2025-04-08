@@ -18,7 +18,7 @@ export default function Product({ product }) {
         >
             <div className="w-[100%] relative hover:scale-101 cursor-pointer transition-transform">
                 <img className="w-[100%]" src={thumbnail} alt="" />
-                <FavoriteIcon />
+                <FavoriteIcon itemId={id} />
             </div>
             <div className="flex flex-col items-start gap-y-3">
                 <div className="flex justify-between w-[100%]">
