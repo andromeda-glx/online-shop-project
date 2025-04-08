@@ -1,13 +1,17 @@
 /* eslint-disable react/prop-types */
 import useProductModal from "../stores/product-modal";
+import useWishList from "../stores/wishlist";
 import formatPrice from "../utils/format-price";
 import FavoriteIcon from "./FavoriteIcon";
 import Rating from "./Rating";
 
 export default function Product({ product }) {
     const { id, title, thumbnail, price, rating, description } = product;
+
     const setProductId = useProductModal((state) => state.setProductId);
-    const setProductModalOpen = useProductModal((state) => state.setProductModalOpen)
+    const setProductModalOpen = useProductModal((state) => state.setProductModalOpen);
+    const itemIds = useWishList((state) => state.itemIds);
+
     return (
         <div
             className="w-[100%] flex flex-col gap-y-3"
@@ -18,7 +22,7 @@ export default function Product({ product }) {
         >
             <div className="w-[100%] relative hover:scale-101 cursor-pointer transition-transform">
                 <img className="w-[100%]" src={thumbnail} alt="" />
-                <FavoriteIcon itemId={id} />
+                <FavoriteIcon itemId={id} isFavorite={itemIds.includes(id)} />
             </div>
             <div className="flex flex-col items-start gap-y-3">
                 <div className="flex justify-between w-[100%]">
