@@ -14,17 +14,17 @@ export default function Product({ product }) {
 
     return (
         <div
-            className="w-[100%] flex flex-col gap-y-3"
+            className="w-[100%] h-[100%] flex flex-col gap-y-3 bg-white p-2 shadow rounded-md hover:scale-101 cursor-pointer transition-transform"
             onClick={() => {
                 setProductId(id);
                 setProductModalOpen(true);
             }}
         >
-            <div className="w-[100%] relative hover:scale-101 cursor-pointer transition-transform">
+            <div className="w-[100%] relative">
                 <img className="w-[100%]" src={thumbnail} alt="" />
                 <FavoriteIcon itemId={id} isFavorite={isFavorite} />
             </div>
-            <div className="flex flex-col items-start gap-y-3">
+            <div className="flex flex-col h-[100%] items-start gap-y-3">
                 <div className="flex justify-between w-[100%]">
                     <h2 className="clamp-text w-[60%] text-lg">{title}</h2>
                     <p className="text-xl">{formatPrice(price)}$</p>
@@ -32,7 +32,7 @@ export default function Product({ product }) {
                 <div className="clamp-text text-sm text-gray-500">
                     {description}
                 </div>
-                <div>
+                <div className="mt-auto">
                     <Rating rating={rating} />
                 </div>
             </div>
