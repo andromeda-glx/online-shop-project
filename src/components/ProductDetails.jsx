@@ -40,12 +40,20 @@ export default function ProductDetails() {
                                 {product.description}
                             </p>
                             <Rating rating={product.rating} />
-                            <SizeButtons />
                         </div>
                 }
             </div>
-            <div className="mt-auto flex flex-col gap-y-10">
-                <div className="flex flex-col gap-y-5">
+            <form className="h-[100%] flex flex-col gap-y-10">
+                {
+                    (
+                        productQuery.isSuccess &&
+                        product?.category === "mens-shirts" ||
+                        product?.category === "tops" ||
+                        product?.category === "womens-dresses"
+                    ) &&
+                    <SizeButtons />
+                }
+                <div className="mt-auto flex flex-col gap-y-5">
                     <div className="flex items-center gap-x-5">
                         <FontAwesomeIcon icon={faTruck} size="xl" />
                         <div>
@@ -65,12 +73,14 @@ export default function ProductDetails() {
                     <div className="flex gap-x-5 items-center">
                         <button
                             className="text-main-theme border-main-theme border rounded-2xl py-1 px-7 text-sm hover:bg-main-theme hover:text-white transition-colors cursor-pointer"
+                            type="submit"
                         >
                             Add to Cart
                         </button>
                         <button
                             className="text-sm cursor-pointer"
                             onClick={() => setProductModalOpen(false)}
+                            type="button"
                         >
                             Cancel
                         </button>
@@ -80,7 +90,7 @@ export default function ProductDetails() {
                         <span>$85</span>
                     </div>
                 </div>
-            </div>
+            </form>
         </div>
     )
 }
