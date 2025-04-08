@@ -1,18 +1,16 @@
+import useCart from "../stores/cart";
 import CheckoutProduct from "./CheckoutProduct";
 
 export default function Checkout() {
+    const cartItemIds = useCart((state) => state.cartItemIds);
+
     return (
         <div className="grid grid-cols-5 grid-rows-5 gap-5 min-w-[400px]">
             <div className="border border-gray-500 col-span-3 row-span-3 p-5 rounded-lg">
                 <h2>Cart Details</h2>
                 <div className="">
                     <ul>
-                        <li>
-                            <CheckoutProduct />
-                        </li>
-                        <li>
-                            <CheckoutProduct />
-                        </li>
+                        {cartItemIds.map(item => <li key={item}>{item}</li>)}
                     </ul>
                 </div>
             </div>

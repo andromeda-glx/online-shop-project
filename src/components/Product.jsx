@@ -10,7 +10,7 @@ export default function Product({ product }) {
 
     const setProductId = useProductModal((state) => state.setProductId);
     const setProductModalOpen = useProductModal((state) => state.setProductModalOpen);
-    const itemIds = useWishList((state) => state.itemIds);
+    const isFavorite = useWishList((state) => state.itemIds.includes(id));
 
     return (
         <div
@@ -22,7 +22,7 @@ export default function Product({ product }) {
         >
             <div className="w-[100%] relative hover:scale-101 cursor-pointer transition-transform">
                 <img className="w-[100%]" src={thumbnail} alt="" />
-                <FavoriteIcon itemId={id} isFavorite={itemIds.includes(id)} />
+                <FavoriteIcon itemId={id} isFavorite={isFavorite} />
             </div>
             <div className="flex flex-col items-start gap-y-3">
                 <div className="flex justify-between w-[100%]">

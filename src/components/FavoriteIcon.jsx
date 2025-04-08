@@ -3,7 +3,8 @@ import useWishList from "../stores/wishlist";
 import HeartIcon from "./Icons/HeartIcon";
 
 export default function FavoriteIcon({ itemId, isFavorite }) {
-    const {addItem, removeItem} = useWishList(state => state);
+    const addItem = useWishList(state => state.addItem);
+    const removeItem = useWishList(state => state.removeItem);
 
     return (
         <span

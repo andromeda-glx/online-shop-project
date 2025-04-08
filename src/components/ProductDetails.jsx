@@ -7,10 +7,13 @@ import Spinner from "./Spinner";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping, faRotateLeft, faTruck } from "@fortawesome/free-solid-svg-icons";
 import SizeButtons from "./SizeButtons";
+import useCart from "../stores/cart";
 
 export default function ProductDetails() {
     const productId = useProductModal(state => state.productId);
     const setProductModalOpen = useProductModal(state => state.setProductModalOpen);
+
+    const addItem = useCart(state => state.addItem);
 
     const productQuery = useQuery({
         queryKey: ["/products", productId],
@@ -18,6 +21,11 @@ export default function ProductDetails() {
     })
 
     const product = productQuery?.data?.data;
+
+    function handleSubmit(e) {
+        e.preventDefault();
+        addItem(product.id);
+    }
 
     return (
         <div className="flex flex-col h-[100%]">
@@ -43,7 +51,7 @@ export default function ProductDetails() {
                         </div>
                 }
             </div>
-            <form className="h-[100%] flex flex-col gap-y-10">
+            <form onSubmit={handleSubmit} className="h-[100%] flex flex-col gap-y-10">
                 {
                     (
                         productQuery.isSuccess &&
