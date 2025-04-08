@@ -23,8 +23,7 @@ export async function getProductsById(ids){
 
     const data = responses.map(res => res.data);
 
-    console.log(data);
-    
+    return data;    
 }
 
 export async function getProduct(productId){
