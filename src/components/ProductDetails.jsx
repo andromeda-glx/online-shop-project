@@ -24,7 +24,8 @@ export default function ProductDetails() {
 
     function handleSubmit(e) {
         e.preventDefault();
-        addItem(product.id);
+        
+        addItem({id: productId, quantity: 1});
     }
 
     return (

@@ -2,18 +2,19 @@ import { create } from "zustand";
 
 const useCart = create((set) => {
     return {
-        cartItemIds: [],
-        addItem: (itemId) => {
+        cartItems: [],
+        totalQuantity: 0,
+        addItem: (item) => {
             set((state) => {
                 return {
-                    cartItemIds: [...state.cartItemIds, itemId]
+                    cartItems: [...state.cartItems, {id: item.id, quantity: item.quantity}]
                 }
             })
         },
         removeItem: (itemId) => {
             set((state) => {
                 return {
-                    cartItemIds: state.cartItemIds.filter(id => id !== itemId)
+                    cartItems: state.cartItems.filter(id => id !== itemId)
                 }
             })
         }

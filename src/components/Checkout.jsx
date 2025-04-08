@@ -1,8 +1,13 @@
+import { getProductsById } from "../services/products";
 import useCart from "../stores/cart";
 import CheckoutProduct from "./CheckoutProduct";
 
 export default function Checkout() {
-    const cartItemIds = useCart((state) => state.cartItemIds);
+    const cartItems = useCart((state) => state.cartItems);
+    console.log(cartItems);
+    
+
+    getProductsById(cartItems.map(item => item.id));
 
     return (
         <div className="grid grid-cols-5 grid-rows-5 gap-5 min-w-[400px]">
@@ -10,7 +15,7 @@ export default function Checkout() {
                 <h2>Cart Details</h2>
                 <div className="">
                     <ul>
-                        {cartItemIds.map(item => <li key={item}>{item}</li>)}
+                        {cartItems.map(item => <li key={item.id}>{item.id}</li>)}
                     </ul>
                 </div>
             </div>

@@ -16,6 +16,17 @@ export async function getProducts(){
     return data;
 }
 
+export async function getProductsById(ids){
+    const responses = await Promise.all(
+        ids.map(id => getProduct(id))
+    );
+
+    const data = responses.map(res => res.data);
+
+    console.log(data);
+    
+}
+
 export async function getProduct(productId){
     const data = axios.get(`https://dummyjson.com/products/${productId}`);
     return data;
