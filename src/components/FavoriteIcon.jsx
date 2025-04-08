@@ -16,8 +16,8 @@ export default function FavoriteIcon({ itemId, isFavorite }) {
             }
         >
             <HeartIcon
-                stroke={"#999999"}
-                fill={isFavorite ? "#ff0000" : "transparent"}
+                stroke={isFavorite ? "#F61B5A" : "#999999"}
+                fill={isFavorite ? "#F61B5A" : "transparent"}
                 hover={"#F61B5A"}
             />
         </span>
