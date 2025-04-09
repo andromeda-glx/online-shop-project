@@ -4,9 +4,12 @@ import { faShoppingCart } from "@fortawesome/free-solid-svg-icons/faShoppingCart
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import useCart from "../../stores/cart";
 import useWishList from "../../stores/wishlist";
+import formatPrice from "../../utils/format-price";
 
 export default function Footer() {
-    const numberOfItems = useCart(state => state.cartItems.reduce((total, item) => total + item.quantity, 0));
+    const cartItems = useCart(state => state.cartItems);
+    const totalPrice = useCart(state => state.invoice.totalPrice);
+    const numberOfItems = cartItems.reduce((total, item) => total + item.quantity, 0);
     const numberOfFavorites = useWishList(state => state.itemIds.length);
 
     return (
@@ -24,7 +27,7 @@ export default function Footer() {
             <div className="">
                 <div className="flex gap-x-2 items-center">
                     <FontAwesomeIcon icon={faShoppingCart} />
-                    <span>$85</span>
+                    <span>{formatPrice(totalPrice)}</span>
                 </div>
             </div>
         </footer>

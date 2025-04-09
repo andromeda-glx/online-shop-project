@@ -21,18 +21,18 @@ export default function Header({ handleCartClick }) {
                     <span className="hidden md:inline-block">Account</span>
                 </div>
                 <div
-                    className="flex items-center gap-x-2"
+                    className={`flex items-center gap-x-2 ${numberOfItems ? "bg-secondary-theme" : "bg-transparent"} px-3 py-1 rounded-md cursor-pointer`}
                     onClick={handleCartClick}
                 >
-                    <div className="relative">
-                        <FontAwesomeIcon icon={faShoppingCart} size="lg" />
-                        {
-                            numberOfItems ?
-                            <span className="absolute -top-2 bg-secondary-theme w-5 h-5 flex items-center justify-center rounded-full -left-2 text-white">
+                    {
+                        numberOfItems ?
+                            <span className="bg-white w-4 h-4 flex justify-center items-center rounded-sm">
                                 {numberOfItems}
                             </span>
                             : undefined
-                        }
+                    }
+                    <div className="relative">
+                        <FontAwesomeIcon icon={faShoppingCart} size="lg" />
                     </div>
                     <span
                         className="hidden md:inline-block">

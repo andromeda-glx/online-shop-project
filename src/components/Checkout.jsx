@@ -26,7 +26,7 @@ export default function Checkout() {
     const totalPrice = products?.reduce((total, item) => total + (item.price * item.quantity), 0) || 0;
 
     return (
-        <div className="grid grid-cols-5 grid-rows-5 gap-5 max-h-[100%]">
+        <div className="grid grid-cols-5 grid-rows-5 gap-5 max-h-[100%] mt-10">
             <div className="border border-gray-500 col-span-3 row-span-3 p-5 rounded-lg overflow-y-auto h-[250px]">
                 <h2 className="text-xl">Cart Details</h2>
                 {productsByIdQuery.isLoading ? <Spinner /> :
@@ -63,7 +63,7 @@ export default function Checkout() {
                     <CheckoutInvoice title={"Tax Percentage"} value={`${taxAmount * 100}%`} />
                     <CheckoutInvoice title={"Final Price"} value={formatPrice(totalPrice * (1 + taxAmount))} />
                 </div>
-                <div className="mt-auto flex flex-col gap-y-5 bg-gray-200 text-gray-500">
+                <div className="mt-auto flex flex-col gap-y-5 bg-gray-200 text-gray-500 rounded-b-lg">
                     <div className="flex items-center gap-x-5 px-5 py-2">
                         <FontAwesomeIcon icon={faTruck} size="xl" />
                         <div>

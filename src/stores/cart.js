@@ -4,6 +4,7 @@ const useCart = create((set, get) => {
   return {
     cartItems: [],
     invoice: {
+      totalPrice: 0,
       taxAmount: 0.1,
     },
     actions: {
@@ -40,6 +41,16 @@ const useCart = create((set, get) => {
         set((state) => {
           return {
             cartItems: state.cartItems.filter((id) => id !== itemId),
+          };
+        });
+      },
+      setTotalPrice: (price) => {
+        set((state) => {
+          return {
+            invoice: {
+                ...state.invoice,
+              totalPrice: price
+            },
           };
         });
       },

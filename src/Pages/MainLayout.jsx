@@ -28,7 +28,7 @@ export default function MainLayout() {
             </main>
             <Footer />
             <Modal
-                style={"top-[50%] left-[50%] translate-[-50%] w-[80%] max-w-[1000px] max-h-[65%] overflow"}
+                style={"top-[50%] left-[50%] translate-[-50%] w-[80%] max-w-[1000px] max-h-[70%] overflow"}
                 isOpen={checkoutModalOpen}
                 onClose={() => setCheckoutModalOpen(false)}
                 modalName={"checkout-modal"}
@@ -36,7 +36,7 @@ export default function MainLayout() {
                 <Checkout />
             </Modal>
             <Modal
-                style={"top-5 bottom-5 right-5 w-[50%] max-w-[500px]"}
+                style={"top-5 bottom-5 right-5 w-[50%] max-w-500px]"}
                 isOpen={productModalOpen}
                 onClose={() => setProductModalOpen(false)}
                 modalName={"product-modal"}

@@ -8,12 +8,15 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping, faRotateLeft, faTruck } from "@fortawesome/free-solid-svg-icons";
 import SizeButtons from "./SizeButtons";
 import useCart from "../stores/cart";
+import formatPrice from "../utils/format-price";
 
 export default function ProductDetails() {
     const productId = useProductModal(state => state.productId);
     const setProductModalOpen = useProductModal(state => state.setProductModalOpen);
 
     const addItem = useCart(state => state.actions.addItem);
+    const totalPrice = useCart(state => state.invoice.totalPrice);
+    const setTotalPrice = useCart(state => state.actions.setTotalPrice);
 
     const productQuery = useQuery({
         queryKey: ["/products", productId],
@@ -25,6 +28,7 @@ export default function ProductDetails() {
     function handleSubmit(e) {
         e.preventDefault();
         addItem({id: productId, quantity: 1});
+        setTotalPrice(totalPrice + (product.price * 1))
     }
 
     return (
@@ -95,7 +99,7 @@ export default function ProductDetails() {
                     </div>
                     <div>
                         <FontAwesomeIcon icon={faCartShopping} size="xl" />
-                        <span>$85</span>
+                        <span>{formatPrice(totalPrice)}</span>
                     </div>
                 </div>
             </form>
