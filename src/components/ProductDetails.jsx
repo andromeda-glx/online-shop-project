@@ -5,12 +5,17 @@ import Rating from "./Rating";
 import formattedPrice from "../utils/format-price";
 import Spinner from "./Spinner";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCartShopping, faRotateLeft, faTruck } from "@fortawesome/free-solid-svg-icons";
+import { faCartShopping, faMinus, faPlus, faRotateLeft, faTruck } from "@fortawesome/free-solid-svg-icons";
 import SizeButtons from "./SizeButtons";
 import useCart from "../stores/cart";
 import formatPrice from "../utils/format-price";
+import { useState } from "react";
 
 export default function ProductDetails() {
+    const [quantity, setQuantity] = useState(1);
+    console.log(quantity);
+    
+
     const productId = useProductModal(state => state.productId);
     const setProductModalOpen = useProductModal(state => state.setProductModalOpen);
 
@@ -27,13 +32,23 @@ export default function ProductDetails() {
 
     function handleSubmit(e) {
         e.preventDefault();
-        addItem({id: productId, quantity: 1});
-        setTotalPrice(totalPrice + (product.price * 1))
+        addItem({ id: productId, quantity });
+        setTotalPrice(totalPrice + (product.price * quantity))
+    }
+
+    function handleChange(e){
+        const newValue = Number(e.target.value);
+        if (newValue){
+            setQuantity(newValue);
+        }
+        else{
+            setQuantity(0);
+        }
     }
 
     return (
         <div className="flex flex-col h-[100%]">
-            <div>
+            <div className="mb-5">
                 {
                     productQuery.isLoading ? <Spinner /> :
                         <div>
@@ -65,6 +80,30 @@ export default function ProductDetails() {
                     ) &&
                     <SizeButtons />
                 }
+                <div
+                    className="inline-flex justify-between items-center w-fit border-2 border-secondary-theme rounded-sm"
+                >
+                    <span
+                        className="bg-secondary-theme w-7 h-7 flex items-center justify-center text-md text-white cursor-pointer hover:opacity-90"
+                        onClick={() => setQuantity(prev => prev > 1 ? prev - 1 : prev)}
+                    >
+                        <FontAwesomeIcon icon={faMinus} />
+                    </span>
+                    <input
+                        className="w-10 h-7 text-center"
+                        type="number"
+                        max={999}
+                        min={1}
+                        value={quantity}
+                        onChange={handleChange}
+                    />
+                    <span
+                        className="bg-secondary-theme w-7 h-7 flex items-center justify-center text-md text-white cursor-pointer hover:opacity-90"
+                        onClick={() => setQuantity(prev => prev < 999 ? prev + 1 : prev)}
+                    >
+                        <FontAwesomeIcon icon={faPlus} />
+                    </span>
+                </div>
                 <div className="mt-auto flex flex-col gap-y-5 text-gray-600">
                     <div className="flex items-center gap-x-5 px-5 py-2">
                         <FontAwesomeIcon icon={faTruck} size="xl" />
