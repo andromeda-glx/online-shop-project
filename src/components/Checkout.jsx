@@ -61,7 +61,11 @@ export default function Checkout() {
                     <CheckoutInvoice title={"Products Added"} value={totalQuantity} />
                     <CheckoutInvoice title={"TotalPrice"} value={formatPrice(totalPrice)} />
                     <CheckoutInvoice title={"Tax Percentage"} value={`${taxAmount * 100}%`} />
-                    <CheckoutInvoice title={"Final Price"} value={formatPrice(totalPrice * (1 + taxAmount))} />
+                    <CheckoutInvoice
+                        title={"Final Price"}
+                        value={formatPrice(totalPrice * (1 + taxAmount))}
+                        valueStyles={"text-2xl font-bold text-secondary-theme"}
+                    />
                 </div>
                 <div className="mt-auto flex flex-col gap-y-5 bg-gray-200 text-gray-500 rounded-b-lg">
                     <div className="flex items-center gap-x-5 px-5 py-2">
@@ -74,8 +78,12 @@ export default function Checkout() {
                     <div className="flex items-center gap-x-5 px-5 py-2">
                         <FontAwesomeIcon icon={faRotateLeft} size="xl" />
                         <div>
-                            <h4 className="text-black">Return Policy</h4>
-                            <p>Within 5days of product delivery</p>
+                            <h4 className="text-black">
+                                Return Policy
+                            </h4>
+                            <p>
+                                Within 5days of product delivery
+                            </p>
                         </div>
                     </div>
                 </div>
