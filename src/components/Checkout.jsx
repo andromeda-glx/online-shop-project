@@ -27,18 +27,18 @@ export default function Checkout() {
 
     return (
         <div className="grid grid-cols-1 lg:grid-cols-5 lg:grid-rows-5 gap-5 max-h-[100%] mt-10">
-            <div className="border border-gray-500 lg:col-span-3 lg:row-span-3 p-5 rounded-lg overflow-y-auto h-[250px]">
+            <div className="border border-gray-500 lg:col-span-3 lg:row-span-3 p-5 rounded-lg overflow-y-auto max-h-[350px]">
                 <h2 className="text-xl">Cart Details</h2>
                 {productsByIdQuery.isLoading ? <Spinner /> :
-                    <div className="h-[100%] mt-2">
-                        <ul className="flex flex-col gap-y-2">
-                            {products.map(product => (
-                                <li key={product.id}>
-                                    <CheckoutProduct product={product} />
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
+                        <div className="h-[100%] mt-2">
+                            <ul className="flex flex-col gap-y-2">
+                                {products.map(product => (
+                                    <li key={product.id}>
+                                        <CheckoutProduct product={product} />
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
                 }
             </div>
             <div className="border border-gray-500 lg:row-start-4 lg:col-span-3 lg:row-span-2 p-5 rounded-lg">

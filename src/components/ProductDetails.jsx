@@ -13,8 +13,6 @@ import { useState } from "react";
 
 export default function ProductDetails() {
     const [quantity, setQuantity] = useState(1);
-    console.log(quantity);
-    
 
     const productId = useProductModal(state => state.productId);
     const setProductModalOpen = useProductModal(state => state.setProductModalOpen);
@@ -70,7 +68,7 @@ export default function ProductDetails() {
                         </div>
                 }
             </div>
-            <form onSubmit={handleSubmit} className="h-[100%] flex flex-col gap-y-10">
+            <form onSubmit={handleSubmit} className="h-[100%] flex flex-col gap-y-10 py-2">
                 {
                     (
                         productQuery.isSuccess &&
