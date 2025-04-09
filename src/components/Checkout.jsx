@@ -4,6 +4,9 @@ import useCart from "../stores/cart";
 import CheckoutProduct from "./CheckoutProduct";
 import Spinner from "./Spinner";
 import formatPrice from "../utils/format-price";
+import CheckoutInvoice from "./CheckoutInvoice";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faRotateLeft, faTruck } from "@fortawesome/free-solid-svg-icons";
 
 export default function Checkout() {
     const cartItems = useCart((state) => state.cartItems);
@@ -50,26 +53,30 @@ export default function Checkout() {
                     United States
                 </address>
             </div>
-            <div className="border border-gray-500 col-span-2 row-span-5 p-5 rounded-lg">
-                <h2 className="text-xl">
+            <div className="border border-gray-500 col-span-2 row-span-5 rounded-lg flex flex-col">
+                <h2 className="text-xl mb-5 m-5">
                     Order Summary
                 </h2>
-                <div>
-                    <div>
-                        <h3>Products Added</h3>
-                        <p>{totalQuantity}</p>
+                <div className="flex flex-col gap-y-3 m-5">
+                    <CheckoutInvoice title={"Products Added"} value={totalQuantity} />
+                    <CheckoutInvoice title={"TotalPrice"} value={formatPrice(totalPrice)} />
+                    <CheckoutInvoice title={"Tax Percentage"} value={`${taxAmount * 100}%`} />
+                    <CheckoutInvoice title={"Final Price"} value={formatPrice(totalPrice * (1 + taxAmount))} />
+                </div>
+                <div className="mt-auto flex flex-col gap-y-5 bg-gray-200 text-gray-500">
+                    <div className="flex items-center gap-x-5 px-5 py-2">
+                        <FontAwesomeIcon icon={faTruck} size="xl" />
+                        <div>
+                            <h4 className="text-black">Delivery Limit</h4>
+                            <p>Free delivery within 50 km</p>
+                        </div>
                     </div>
-                    <div>
-                        <h3>Total Price</h3>
-                        <p>{formatPrice(totalPrice)}</p>
-                    </div>
-                    <div>
-                        <h3>Tax Percentage</h3>
-                        <p>{taxAmount * 100}%</p>
-                    </div>
-                    <div>
-                        <h3>Final Price</h3>
-                        <p>{formatPrice(totalPrice * (1 + taxAmount))}</p>
+                    <div className="flex items-center gap-x-5 px-5 py-2">
+                        <FontAwesomeIcon icon={faRotateLeft} size="xl" />
+                        <div>
+                            <h4 className="text-black">Return Policy</h4>
+                            <p>Within 5days of product delivery</p>
+                        </div>
                     </div>
                 </div>
             </div>
