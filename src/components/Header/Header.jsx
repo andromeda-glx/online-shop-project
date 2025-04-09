@@ -4,8 +4,11 @@ import Navbar from "./Navbar";
 import { faUser } from "@fortawesome/free-regular-svg-icons";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import TitleLogo from "../TitleLogo";
+import useCart from "../../stores/cart";
 
 export default function Header({ handleCartClick }) {
+    const numberOfItems = useCart(state => state.cartItems.reduce((total, item) => total + item.quantity, 0));
+
     return (
         <header className="px-[67px] bg-gray-100 flex justify-between items-center max-w-[1500px] mx-auto py-3">
             <div className="flex items-center gap-x-3">
@@ -14,14 +17,23 @@ export default function Header({ handleCartClick }) {
             </div>
             <div className="flex gap-x-6">
                 <div className="flex items-center gap-x-2">
-                    <FontAwesomeIcon icon={faUser} />
+                    <FontAwesomeIcon icon={faUser} size="lg" />
                     <span className="hidden md:inline-block">Account</span>
                 </div>
                 <div
                     className="flex items-center gap-x-2"
                     onClick={handleCartClick}
                 >
-                    <FontAwesomeIcon icon={faShoppingCart} />
+                    <div className="relative">
+                        <FontAwesomeIcon icon={faShoppingCart} size="lg" />
+                        {
+                            numberOfItems ?
+                            <span className="absolute -top-2 bg-secondary-theme w-5 h-5 flex items-center justify-center rounded-full -left-2 text-white">
+                                {numberOfItems}
+                            </span>
+                            : undefined
+                        }
+                    </div>
                     <span
                         className="hidden md:inline-block">
                         Cart
