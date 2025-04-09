@@ -10,6 +10,7 @@ import SizeButtons from "./SizeButtons";
 import useCart from "../stores/cart";
 import formatPrice from "../utils/format-price";
 import { useState } from "react";
+import SpinnerControl from "./SpinnerControl";
 
 export default function ProductDetails() {
     const [quantity, setQuantity] = useState(1);
@@ -32,16 +33,6 @@ export default function ProductDetails() {
         e.preventDefault();
         addItem({ id: productId, quantity });
         setTotalPrice(totalPrice + (product.price * quantity))
-    }
-
-    function handleChange(e){
-        const newValue = Number(e.target.value);
-        if (newValue){
-            setQuantity(newValue);
-        }
-        else{
-            setQuantity(0);
-        }
     }
 
     return (
@@ -78,30 +69,7 @@ export default function ProductDetails() {
                     ) &&
                     <SizeButtons />
                 }
-                <div
-                    className="inline-flex justify-between items-center w-fit border-2 border-secondary-theme rounded-sm"
-                >
-                    <span
-                        className="bg-secondary-theme w-7 h-7 flex items-center justify-center text-md text-white cursor-pointer hover:opacity-90"
-                        onClick={() => setQuantity(prev => prev > 1 ? prev - 1 : prev)}
-                    >
-                        <FontAwesomeIcon icon={faMinus} />
-                    </span>
-                    <input
-                        className="w-10 h-7 text-center"
-                        type="number"
-                        max={999}
-                        min={1}
-                        value={quantity}
-                        onChange={handleChange}
-                    />
-                    <span
-                        className="bg-secondary-theme w-7 h-7 flex items-center justify-center text-md text-white cursor-pointer hover:opacity-90"
-                        onClick={() => setQuantity(prev => prev < 999 ? prev + 1 : prev)}
-                    >
-                        <FontAwesomeIcon icon={faPlus} />
-                    </span>
-                </div>
+                <SpinnerControl quantity={quantity} setQuantity={setQuantity} />
                 <div className="mt-auto flex flex-col gap-y-5 text-gray-600">
                     <div className="flex items-center gap-x-5 px-5 py-2">
                         <FontAwesomeIcon icon={faTruck} size="xl" />
