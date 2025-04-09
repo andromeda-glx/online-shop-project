@@ -24,7 +24,7 @@ export default function SpinnerControl({ quantity, setQuantity }) {
                 <FontAwesomeIcon icon={faMinus} />
             </span>
             <input
-                className="w-10 h-7 text-center"
+                className="w-10 h-7 text-center bg-white"
                 type="number"
                 max={999}
                 min={1}

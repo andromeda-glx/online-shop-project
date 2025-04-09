@@ -4,6 +4,7 @@ const useCart = create((set, get) => {
   return {
     cartItems: [],
     invoice: {
+      totalQuantity: 0,
       totalPrice: 0,
       taxAmount: 0.1,
     },
@@ -44,12 +45,34 @@ const useCart = create((set, get) => {
           };
         });
       },
+      editItem: (item) => {
+        set((state) => {
+          return {
+            cartItems: state.cartItems.map((cartItem) => {
+              if (item.id === cartItem.id) {
+                return item;
+              }
+              return cartItem;
+            }),
+          };
+        });
+      },
       setTotalPrice: (price) => {
         set((state) => {
           return {
             invoice: {
-                ...state.invoice,
-              totalPrice: price
+              ...state.invoice,
+              totalPrice: price,
+            },
+          };
+        });
+      },
+      setTotalQuantity: (quantity) => {
+        set((state) => {
+          return {
+            invoice: {
+              ...state.invoice,
+              totalQuantity: quantity,
             },
           };
         });

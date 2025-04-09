@@ -5,7 +5,7 @@ import Rating from "./Rating";
 import formattedPrice from "../utils/format-price";
 import Spinner from "./Spinner";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCartShopping, faMinus, faPlus, faRotateLeft, faTruck } from "@fortawesome/free-solid-svg-icons";
+import { faCartShopping, faRotateLeft, faTruck } from "@fortawesome/free-solid-svg-icons";
 import SizeButtons from "./SizeButtons";
 import useCart from "../stores/cart";
 import formatPrice from "../utils/format-price";
@@ -93,8 +93,9 @@ export default function ProductDetails() {
                 <div className="flex items-center justify-between">
                     <div className="flex gap-x-5 items-center">
                         <button
-                            className="text-main-theme border-main-theme border rounded-2xl py-1 px-7 text-sm hover:bg-main-theme hover:text-white transition-colors cursor-pointer"
+                            className="text-main-theme border-main-theme border rounded-2xl py-1 px-7 text-sm hover:bg-main-theme hover:text-white transition-colors cursor-pointer disabled:opacity-50"
                             type="submit"
+                            disabled={!productQuery.isSuccess}
                         >
                             Add to Cart
                         </button>

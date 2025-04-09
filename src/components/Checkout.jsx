@@ -11,9 +11,11 @@ import { faRotateLeft, faTruck } from "@fortawesome/free-solid-svg-icons";
 export default function Checkout() {
     const cartItems = useCart((state) => state.cartItems);
     const taxAmount = useCart(state => state.invoice.taxAmount);
+    const setQuantity = useCart(state => state.actions.setTotalQuantity);
 
     const productIds = cartItems.map(item => item.id);
     const totalQuantity = cartItems.reduce((total, item) => total + item.quantity, 0);
+    setQuantity(totalQuantity);
 
     const productsByIdQuery = useQuery({
         queryKey: ['/products-by-id'],
@@ -24,10 +26,10 @@ export default function Checkout() {
     const products = productsByIdQuery?.data?.map((product, index) => ({ ...product, quantity: cartItems[index].quantity }));
 
     const totalPrice = products?.reduce((total, item) => total + (item.price * item.quantity), 0) || 0;
-
+    
     return (
         <div className="grid grid-cols-1 lg:grid-cols-5 lg:grid-rows-5 gap-5 max-h-[100%] mt-10">
-            <div className="border border-gray-500 lg:col-span-3 lg:row-span-3 p-5 rounded-lg overflow-y-auto max-h-[350px]">
+            <div className="border border-gray-500 lg:col-span-3 lg:row-span-3 p-4 rounded-lg overflow-y-auto max-h-[350px]">
                 <h2 className="text-xl">Cart Details</h2>
                 {productsByIdQuery.isLoading ? <Spinner /> :
                         <div className="h-[100%] mt-2">
@@ -41,7 +43,7 @@ export default function Checkout() {
                         </div>
                 }
             </div>
-            <div className="border border-gray-500 lg:row-start-4 lg:col-span-3 lg:row-span-2 p-5 rounded-lg">
+            <div className="border border-gray-500 lg:row-start-4 lg:col-span-3 lg:row-span-2 p-4 rounded-lg">
                 <h2 className="text-xl mb-2">
                     Delivery Information
                 </h2>
@@ -54,10 +56,10 @@ export default function Checkout() {
                 </address>
             </div>
             <div className="border border-gray-500 lg:col-span-2 lg:row-span-5 rounded-lg flex flex-col">
-                <h2 className="text-xl mb-5 m-5">
+                <h2 className="text-xl mb-5 m-4">
                     Order Summary
                 </h2>
-                <div className="flex flex-col gap-y-3 m-5">
+                <div className="flex flex-col gap-y-3 m-4">
                     <CheckoutInvoice title={"Products Added"} value={totalQuantity} />
                     <CheckoutInvoice title={"TotalPrice"} value={formatPrice(totalPrice)} />
                     <CheckoutInvoice title={"Tax Percentage"} value={`${taxAmount * 100}%`} />

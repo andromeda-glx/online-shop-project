@@ -1,16 +1,26 @@
 /* eslint-disable react/prop-types */
+import { useEffect, useState } from "react";
 import formatPrice from "../utils/format-price";
 import Rating from "./Rating";
+import SpinnerControl from "./SpinnerControl";
+import useCart from "../stores/cart";
 
 export default function CheckoutProduct({ product }) {
-    const { id, title, thumbnail, price, rating, description, quantity } = product;
+    const [quantity, setQuantity] = useState(product.quantity);
+
+    const editItem = useCart((state) => state.actions.editItem);
+
+    const { id, title, thumbnail, price, rating, description } = product;
+
+    useEffect(() => {
+        editItem({ id, quantity })
+    }, [quantity]);
+
     return (
-        <div className="grid grid-cols-[150px_1fr] items-center">
-            <div className="relative">
+        <div className="grid grid-cols-[150px_1fr] items-center mb-2 bg-gray-100 p-2">
+            <div className="flex flex-col items-center">
                 <img src={thumbnail} alt="" />
-                <span className="absolute bg-secondary-theme w-9 h-9 bottom-5 right-5 rounded-full flex justify-center items-center text-white text-lg">
-                    {quantity}
-                </span>
+                <SpinnerControl quantity={quantity} setQuantity={setQuantity} />
             </div>
             <div className="flex justify-between gap-x-2">
                 <div>
