@@ -26,8 +26,8 @@ export default function Checkout() {
     const totalPrice = products?.reduce((total, item) => total + (item.price * item.quantity), 0) || 0;
 
     return (
-        <div className="grid grid-cols-5 grid-rows-5 gap-5 max-h-[100%] mt-10">
-            <div className="border border-gray-500 col-span-3 row-span-3 p-5 rounded-lg overflow-y-auto h-[250px]">
+        <div className="grid grid-cols-1 lg:grid-cols-5 lg:grid-rows-5 gap-5 max-h-[100%] mt-10">
+            <div className="border border-gray-500 lg:col-span-3 lg:row-span-3 p-5 rounded-lg overflow-y-auto h-[250px]">
                 <h2 className="text-xl">Cart Details</h2>
                 {productsByIdQuery.isLoading ? <Spinner /> :
                     <div className="h-[100%] mt-2">
@@ -41,7 +41,7 @@ export default function Checkout() {
                     </div>
                 }
             </div>
-            <div className="border border-gray-500 row-start-4 col-span-3 row-span-2 p-5 rounded-lg">
+            <div className="border border-gray-500 lg:row-start-4 lg:col-span-3 lg:row-span-2 p-5 rounded-lg">
                 <h2 className="text-xl mb-2">
                     Delivery Information
                 </h2>
@@ -53,7 +53,7 @@ export default function Checkout() {
                     United States
                 </address>
             </div>
-            <div className="border border-gray-500 col-span-2 row-span-5 rounded-lg flex flex-col">
+            <div className="border border-gray-500 lg:col-span-2 lg:row-span-5 rounded-lg flex flex-col">
                 <h2 className="text-xl mb-5 m-5">
                     Order Summary
                 </h2>

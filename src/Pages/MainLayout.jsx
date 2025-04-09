@@ -36,7 +36,7 @@ export default function MainLayout() {
                 <Checkout />
             </Modal>
             <Modal
-                style={"top-5 bottom-5 right-5 w-[50%] max-w-500px]"}
+                style={"top-5 bottom-5 left-5 right-5 md:w-[60%] md:max-w-[500px] md:left-auto"}
                 isOpen={productModalOpen}
                 onClose={() => setProductModalOpen(false)}
                 modalName={"product-modal"}
