@@ -13,7 +13,7 @@ export default function ProductDetails() {
     const productId = useProductModal(state => state.productId);
     const setProductModalOpen = useProductModal(state => state.setProductModalOpen);
 
-    const addItem = useCart(state => state.addItem);
+    const addItem = useCart(state => state.actions.addItem);
 
     const productQuery = useQuery({
         queryKey: ["/products", productId],
