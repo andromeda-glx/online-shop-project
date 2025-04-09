@@ -3,18 +3,24 @@ import { getProductsById } from "../services/products";
 import useCart from "../stores/cart";
 import CheckoutProduct from "./CheckoutProduct";
 import Spinner from "./Spinner";
+import formatPrice from "../utils/format-price";
 
 export default function Checkout() {
     const cartItems = useCart((state) => state.cartItems);
+    const taxAmount = useCart(state => state.invoice.taxAmount);
 
     const productIds = cartItems.map(item => item.id);
+    const totalQuantity = cartItems.reduce((total, item) => total + item.quantity, 0);
 
     const productsByIdQuery = useQuery({
         queryKey: ['/products-by-id'],
-        queryFn: () => getProductsById(productIds)
+        queryFn: () => getProductsById(productIds),
+        staleTime: 0
     })
 
-    const products = productsByIdQuery?.data?.map((product, index) => ({...product, quantity: cartItems[index].quantity}));
+    const products = productsByIdQuery?.data?.map((product, index) => ({ ...product, quantity: cartItems[index].quantity }));
+
+    const totalPrice = products?.reduce((total, item) => total + (item.price * item.quantity), 0) || 0;
 
     return (
         <div className="grid grid-cols-5 grid-rows-5 gap-5 max-h-[100%]">
@@ -48,6 +54,24 @@ export default function Checkout() {
                 <h2 className="text-xl">
                     Order Summary
                 </h2>
+                <div>
+                    <div>
+                        <h3>Products Added</h3>
+                        <p>{totalQuantity}</p>
+                    </div>
+                    <div>
+                        <h3>Total Price</h3>
+                        <p>{formatPrice(totalPrice)}</p>
+                    </div>
+                    <div>
+                        <h3>Tax Percentage</h3>
+                        <p>{taxAmount * 100}%</p>
+                    </div>
+                    <div>
+                        <h3>Final Price</h3>
+                        <p>{formatPrice(totalPrice * (1 + taxAmount))}</p>
+                    </div>
+                </div>
             </div>
         </div>
     )
