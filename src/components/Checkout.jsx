@@ -14,8 +14,7 @@ export default function Checkout() {
         queryFn: () => getProductsById(productIds)
     })
 
-    const products = productsByIdQuery?.data;
-
+    const products = productsByIdQuery?.data?.map((product, index) => ({...product, quantity: cartItems[index].quantity}));
 
     return (
         <div className="grid grid-cols-5 grid-rows-5 gap-5 max-h-[100%]">
