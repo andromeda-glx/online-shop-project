@@ -65,19 +65,23 @@ export default function ProductDetails() {
                     ) &&
                     <SizeButtons />
                 }
-                <div className="mt-auto flex flex-col gap-y-5">
-                    <div className="flex items-center gap-x-5">
+                <div className="mt-auto flex flex-col gap-y-5 text-gray-600">
+                    <div className="flex items-center gap-x-5 px-5 py-2">
                         <FontAwesomeIcon icon={faTruck} size="xl" />
                         <div>
-                            <h4>Delivery Limit</h4>
+                            <h4 className="text-black">Delivery Limit</h4>
                             <p>Free delivery within 50 km</p>
                         </div>
                     </div>
-                    <div className="flex items-center gap-x-5">
+                    <div className="flex items-center gap-x-5 px-5 py-2">
                         <FontAwesomeIcon icon={faRotateLeft} size="xl" />
                         <div>
-                            <h4>Return Policy</h4>
-                            <p>Within 5days of product delivery</p>
+                            <h4 className="text-black">
+                                Return Policy
+                            </h4>
+                            <p>
+                                Within 5days of product delivery
+                            </p>
                         </div>
                     </div>
                 </div>
