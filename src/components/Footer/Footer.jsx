@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import { faShoppingBag } from "@fortawesome/free-solid-svg-icons";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons/faShoppingCart";
@@ -6,7 +7,7 @@ import useCart from "../../stores/cart";
 import useWishList from "../../stores/wishlist";
 import formatPrice from "../../utils/format-price";
 
-export default function Footer() {
+export default function Footer({ handleClick }) {
     const cartItems = useCart(state => state.cartItems);
     const totalPrice = useCart(state => state.invoice.totalPrice);
     const numberOfItems = cartItems.reduce((total, item) => total + item.quantity, 0);
@@ -25,7 +26,10 @@ export default function Footer() {
                 </div>
             </div>
             <div className="">
-                <div className="flex gap-x-2 items-center">
+                <div
+                    className="flex gap-x-2 items-center border border-transparent hover:border-white cursor-pointer p-1"
+                    onClick={handleClick}
+                >
                     <FontAwesomeIcon icon={faShoppingCart} />
                     <span>{formatPrice(totalPrice)}</span>
                 </div>

@@ -26,7 +26,7 @@ export default function MainLayout() {
             <main className="px-[67px] max-w-[1500px] w-[100%] mx-auto bg-gray-50 min-h-dvh flex flex-col gap-y-10">
                 <Outlet />
             </main>
-            <Footer />
+            <Footer handleClick={() => setCheckoutModalOpen(true)} />
             <Modal
                 style={"top-[50%] left-[50%] translate-[-50%] w-[80%] max-w-[1000px] max-h-[70%] overflow"}
                 isOpen={checkoutModalOpen}
