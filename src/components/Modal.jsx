@@ -3,6 +3,7 @@ import useOnClickOutside from "../hooks/useOnClickOutside";
 import { createPortal } from "react-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import { AnimatePresence, motion } from "motion/react";
 
 /* eslint-disable react/prop-types */
 export default function Modal({ style, isOpen, onClose, children, modalName }) {
@@ -10,23 +11,33 @@ export default function Modal({ style, isOpen, onClose, children, modalName }) {
 
     useOnClickOutside(modalRef, onClose);
 
-    if (!isOpen) {
-        return null;
-    }
     return (
         createPortal(
-            <div className={`bg-black/30 inset-0 fixed z-5`}>
-                <div ref={modalRef} className={`bg-white p-5 rounded-xl absolute z-10 overflow-y-auto ${style}`}>
-                    <button
-                        type="button"
-                        onClick={onClose}
-                        className="w-10 h-10 bg-black/20 rounded-full cursor-pointer absolute top-2 right-2"
+            <AnimatePresence>
+                {isOpen && (
+                    <div
+                        className={`bg-black/30 inset-0 fixed z-5`}
                     >
-                        <FontAwesomeIcon icon={faXmark} size="lg" />
-                    </button>
-                    {children}
-                </div>
-            </div>
-        , document.body, modalName)
+                        <motion.div
+                            ref={modalRef}
+                            className={`bg-white p-5 rounded-xl absolute z-10 overflow-y-auto ${style}`}
+                            initial={{ x: 200, opacity: 0 }}
+                            animate={{ x: 0, opacity: 1 }}
+                            exit={{ x: 200, opacity: 0 }}
+                            transition={{ duration: 0.3 }}
+                        >
+                            <button
+                                type="button"
+                                onClick={onClose}
+                                className="w-10 h-10 bg-black/20 rounded-full cursor-pointer absolute top-2 right-2"
+                            >
+                                <FontAwesomeIcon icon={faXmark} size="lg" />
+                            </button>
+                            {children}
+                        </motion.div>
+                    </div>
+                )}
+            </AnimatePresence>
+            , document.body, modalName)
     )
 }
