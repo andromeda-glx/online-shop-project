@@ -42,7 +42,7 @@ export default function Product({ product }) {
             </div>
             {isInCart &&
                 <span className="absolute inset-0 bg-green-700/30 rounded-md flex justify-center items-center">
-                <span className="w-15 h-15 bg-gray-400 flex items-center justify-center rounded-full text-gray-700">
+                <span className="w-15 h-15 bg-gray-100 flex items-center justify-center rounded-full text-green-600">
                     <FontAwesomeIcon icon={faCartShopping} size="xl" />
                 </span>
             </span>
