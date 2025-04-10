@@ -12,6 +12,25 @@ export default function CheckoutProduct({ product }) {
 
     const { id, title, thumbnail, price, rating, description } = product;
 
+    function handleClick(amount){
+        if (amount > 0){
+            setQuantity(prev => prev + amount < 999 ? prev + amount : prev);
+        }
+        else{
+            setQuantity(prev => prev + amount > 0 ? prev + amount : prev);
+        }
+    }
+
+    function handleChange(e){
+        const newValue = Number(e.target.value);
+        if (newValue){
+            setQuantity(newValue);
+        }
+        else{
+            setQuantity(0);
+        }
+    }
+
     useEffect(() => {
         editItem({ id, quantity })
     }, [quantity]);
@@ -20,7 +39,7 @@ export default function CheckoutProduct({ product }) {
         <div className="grid grid-cols-[150px_1fr] items-center mb-2 bg-gray-100 p-2">
             <div className="flex flex-col items-center">
                 <img src={thumbnail} alt="" />
-                <SpinnerControl quantity={quantity} setQuantity={setQuantity} />
+                <SpinnerControl quantity={quantity} handleChange={handleChange} handleClick={handleClick} />
             </div>
             <div className="flex justify-between gap-x-2">
                 <div>
