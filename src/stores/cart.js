@@ -9,6 +9,7 @@ const useCart = create((set, get) => {
       taxAmount: 0.1,
     },
     actions: {
+        /* addItem adds a brand new product in the list */
       addItem: (item) => {
         const doesExist = get().cartItems.some(
           (cartItem) => cartItem.id === item.id

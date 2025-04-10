@@ -1,9 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
-import { getProductsById } from "../services/products";
-import useCart from "../stores/cart";
+import { getProductsById } from "../../services/products";
+import useCart from "../../stores/cart";
 import CheckoutProduct from "./CheckoutProduct";
-import Spinner from "./Spinner";
-import formatPrice from "../utils/format-price";
+import Spinner from "../Spinner";
+import formatPrice from "../../utils/format-price";
 import CheckoutInvoice from "./CheckoutInvoice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRotateLeft, faTruck } from "@fortawesome/free-solid-svg-icons";

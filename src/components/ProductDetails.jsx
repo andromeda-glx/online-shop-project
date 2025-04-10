@@ -9,11 +9,11 @@ import { faCartShopping, faRotateLeft, faTruck } from "@fortawesome/free-solid-s
 import SizeButtons from "./SizeButtons";
 import useCart from "../stores/cart";
 import formatPrice from "../utils/format-price";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SpinnerControl from "./SpinnerControl";
 
 export default function ProductDetails() {
-    const [quantity, setQuantity] = useState(1);
+    const [quantity, setQuantity] = useState(0);
 
     const productId = useProductModal(state => state.productId);
     const setProductModalOpen = useProductModal(state => state.setProductModalOpen);
@@ -21,6 +21,7 @@ export default function ProductDetails() {
     const addItem = useCart(state => state.actions.addItem);
     const totalPrice = useCart(state => state.invoice.totalPrice);
     const setTotalPrice = useCart(state => state.actions.setTotalPrice);
+    const editItem = useCart(state => state.actions.editItem);
 
     const productQuery = useQuery({
         queryKey: ["/products", productId],
@@ -31,9 +32,35 @@ export default function ProductDetails() {
 
     function handleSubmit(e) {
         e.preventDefault();
+        setQuantity(prev => prev + 1);
         addItem({ id: productId, quantity });
         setTotalPrice(totalPrice + (product.price * quantity))
     }
+
+    function handleChange(e) {
+        const newValue = Number(e.target.value);
+        if (newValue) {
+            setQuantity(newValue);
+        }
+        else {
+            setQuantity(0);
+        }
+    }
+
+    function handleClick(amount) {
+        if (amount > 0) {
+            setQuantity(prev => prev + amount < 999 ? prev + amount : prev);
+        }
+        else {
+            setQuantity(prev => prev + amount > 0 ? prev + amount : prev);
+        }
+    }
+
+    useEffect(() => {
+        if (productQuery.isSuccess){
+            editItem({ id: product.id, quantity })
+        }
+    }, [quantity]);
 
     return (
         <div className="flex flex-col h-[100%]">
@@ -69,7 +96,6 @@ export default function ProductDetails() {
                     ) &&
                     <SizeButtons />
                 }
-                <SpinnerControl quantity={quantity} setQuantity={setQuantity} />
                 <div className="mt-auto flex flex-col gap-y-5 text-gray-600">
                     <div className="flex items-center gap-x-5 px-5 py-2">
                         <FontAwesomeIcon icon={faTruck} size="xl" />
@@ -92,13 +118,21 @@ export default function ProductDetails() {
                 </div>
                 <div className="flex items-center justify-between">
                     <div className="flex gap-x-5 items-center">
-                        <button
-                            className="text-main-theme border-main-theme border rounded-2xl py-1 px-7 text-sm hover:bg-main-theme hover:text-white transition-colors cursor-pointer disabled:opacity-50"
-                            type="submit"
-                            disabled={!productQuery.isSuccess}
-                        >
-                            Add to Cart
-                        </button>
+                        {
+                            quantity > 0 ?
+                                <SpinnerControl
+                                    quantity={quantity}
+                                    handleChange={handleChange}
+                                    handleClick={handleClick}
+                                /> :
+                                <button
+                                    className="text-main-theme border-main-theme border rounded-2xl py-1 px-7 text-sm hover:bg-main-theme hover:text-white transition-colors cursor-pointer disabled:opacity-50"
+                                    type="submit"
+                                    disabled={!productQuery.isSuccess}
+                                >
+                                    Add to Cart
+                                </button>
+                        }
                         <button
                             className="text-sm cursor-pointer"
                             onClick={() => setProductModalOpen(false)}

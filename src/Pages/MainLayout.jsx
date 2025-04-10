@@ -5,7 +5,7 @@ import Header from "../components/Header/Header";
 import TopHeader from "../components/Header/TopHeader";
 import { useState } from "react";
 import Modal from "../components/Modal";
-import Checkout from "../components/Checkout";
+import Checkout from "../components/Checkout/Checkout";
 import useProductModal from "../stores/product-modal";
 import ProductDetails from "../components/ProductDetails";
 
