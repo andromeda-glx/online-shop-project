@@ -13,10 +13,11 @@ import { useEffect, useState } from "react";
 import SpinnerControl from "./SpinnerControl";
 
 export default function ProductDetails() {
-    const [quantity, setQuantity] = useState(0);
-
     const productId = useProductModal(state => state.productId);
     const setProductModalOpen = useProductModal(state => state.setProductModalOpen);
+
+    /* checks if item is already in the cart or not */
+    const [quantity, setQuantity] = useState(useCart(state => state.cartItems.find(item => item.id === productId)?.quantity) || 0);
 
     const addItem = useCart(state => state.actions.addItem);
     const totalPrice = useCart(state => state.invoice.totalPrice);
@@ -30,11 +31,11 @@ export default function ProductDetails() {
 
     const product = productQuery?.data?.data;
 
+    /* This function adds the product to the list for the first time */
     function handleSubmit(e) {
         e.preventDefault();
-        setQuantity(prev => prev + 1);
-        addItem({ id: productId, quantity });
-        setTotalPrice(totalPrice + (product.price * quantity))
+        setQuantity(1);
+        addItem({ id: product.id, price: product.price });
     }
 
     function handleChange(e) {
@@ -52,16 +53,17 @@ export default function ProductDetails() {
             setQuantity(prev => prev + amount < 999 ? prev + amount : prev);
         }
         else {
-            setQuantity(prev => prev + amount > 0 ? prev + amount : prev);
+            setQuantity(prev => prev + amount >= 0 ? prev + amount : prev)
         }
     }
 
     useEffect(() => {
-        if (productQuery.isSuccess){
-            editItem({ id: product.id, quantity })
+        if (productQuery.isSuccess) {
+            editItem({ id: product.id, quantity, price: product.price });
+            setTotalPrice();
         }
     }, [quantity]);
-
+    
     return (
         <div className="flex flex-col h-[100%]">
             <div className="mb-5">

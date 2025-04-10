@@ -2,6 +2,8 @@ import { create } from "zustand";
 
 const useCart = create((set, get) => {
   return {
+    /* cartItems stores {id, quantity, price} */
+    /* price will be renewed when user opens the checkout and fetches the requested products again */
     cartItems: [],
     invoice: {
       totalQuantity: 0,
@@ -9,61 +11,43 @@ const useCart = create((set, get) => {
       taxAmount: 0.1,
     },
     actions: {
-        /* addItem adds a brand new product in the list */
+      /* addItem adds a brand new product in the list */
       addItem: (item) => {
-        const doesExist = get().cartItems.some(
-          (cartItem) => cartItem.id === item.id
-        );
-
-        set((state) => {
-          if (doesExist) {
-            return {
-              cartItems: state.cartItems.map((cartItem) => {
-                if (cartItem.id === item.id) {
-                  return {
-                    id: cartItem.id,
-                    quantity: cartItem.quantity + item.quantity,
-                  };
-                } else {
-                  return cartItem;
-                }
-              }),
-            };
-          } else {
-            return {
-              cartItems: [
-                ...state.cartItems,
-                { id: item.id, quantity: item.quantity },
-              ],
-            };
-          }
-        });
-      },
-      removeItem: (itemId) => {
         set((state) => {
           return {
-            cartItems: state.cartItems.filter((id) => id !== itemId),
+            cartItems: [
+              ...state.cartItems,
+              { ...item, quantity: 1 },
+            ],
           };
         });
       },
+      /* edit item is responsible for adding/removing the already existing product's quantity */
       editItem: (item) => {
         set((state) => {
-          return {
-            cartItems: state.cartItems.map((cartItem) => {
-              if (item.id === cartItem.id) {
-                return item;
-              }
-              return cartItem;
-            }),
-          };
+            if (item.quantity === 0){
+                return {
+                    cartItems: state.cartItems.filter(cartItem => cartItem.id !== item.id)
+                }
+            }
+            else{
+                return {
+                  cartItems: state.cartItems.map(cartItem => {
+                    if (item.id === cartItem.id) {
+                      return item;
+                    }
+                    return cartItem;
+                  }),
+                };
+            }
         });
       },
-      setTotalPrice: (price) => {
+      setTotalPrice: () => {
         set((state) => {
           return {
             invoice: {
               ...state.invoice,
-              totalPrice: price,
+              totalPrice: state.cartItems.reduce((total, item) => (total + (item.price * item.quantity)), 0),
             },
           };
         });

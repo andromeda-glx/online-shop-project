@@ -9,30 +9,34 @@ export default function CheckoutProduct({ product }) {
     const [quantity, setQuantity] = useState(product.quantity);
 
     const editItem = useCart((state) => state.actions.editItem);
+    const setTotalPrice = useCart((state) => state.actions.setTotalPrice);
 
     const { id, title, thumbnail, price, rating, description } = product;
 
-    function handleClick(amount){
-        if (amount > 0){
+    function handleClick(amount) {
+        if (amount > 0) {
             setQuantity(prev => prev + amount < 999 ? prev + amount : prev);
         }
-        else{
-            setQuantity(prev => prev + amount > 0 ? prev + amount : prev);
+        else {
+            setQuantity(prev => prev + amount >= 0 ? prev + amount : prev);
         }
     }
 
-    function handleChange(e){
+    function handleChange(e) {
         const newValue = Number(e.target.value);
-        if (newValue){
+        if (newValue) {
             setQuantity(newValue);
         }
-        else{
+        else {
             setQuantity(0);
         }
     }
 
     useEffect(() => {
-        editItem({ id, quantity })
+        if (product) {
+            editItem({ id, quantity, price })
+            setTotalPrice();
+        }
     }, [quantity]);
 
     return (

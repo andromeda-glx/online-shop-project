@@ -12,10 +12,7 @@ export default function Checkout() {
     const cartItems = useCart((state) => state.cartItems);
     const taxAmount = useCart(state => state.invoice.taxAmount);
     const setQuantity = useCart(state => state.actions.setTotalQuantity);
-
-    const productIds = cartItems.map(item => item.id);
-    const totalQuantity = cartItems.reduce((total, item) => total + item.quantity, 0);
-    setQuantity(totalQuantity);
+    const totalPrice = useCart(state => state.invoice.totalPrice);
 
     const productsByIdQuery = useQuery({
         queryKey: ['/products-by-id'],
@@ -23,24 +20,32 @@ export default function Checkout() {
         staleTime: 0
     })
 
-    const products = productsByIdQuery?.data?.map((product, index) => ({ ...product, quantity: cartItems[index].quantity }));
+    const products = productsByIdQuery?.data?.map((product) => {
+        const foundProduct = cartItems.find(item => product.id === item.id);
+        
+        if (foundProduct) {
+            return { ...product, quantity: foundProduct.quantity }
+        }
+    });
 
-    const totalPrice = products?.reduce((total, item) => total + (item.price * item.quantity), 0) || 0;
-    
+    const productIds = cartItems.map(item => item.id);
+    const totalQuantity = cartItems.reduce((total, item) => total + item.quantity, 0);
+    setQuantity(totalQuantity);
+
     return (
         <div className="grid grid-cols-1 lg:grid-cols-5 lg:grid-rows-5 gap-5 max-h-[100%] mt-10">
             <div className="border border-gray-500 lg:col-span-3 lg:row-span-3 p-4 rounded-lg overflow-y-auto max-h-[350px]">
                 <h2 className="text-xl">Cart Details</h2>
                 {productsByIdQuery.isLoading ? <Spinner /> :
-                        <div className="h-[100%] mt-2">
-                            <ul className="flex flex-col gap-y-2">
-                                {products.map(product => (
-                                    <li key={product.id}>
-                                        <CheckoutProduct product={product} />
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
+                    <div className="h-[100%] mt-2">
+                        <ul className="flex flex-col gap-y-2">
+                            {products.map(product => (
+                                product && <li key={product.id}>
+                                    <CheckoutProduct product={product} />
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
                 }
             </div>
             <div className="border border-gray-500 lg:row-start-4 lg:col-span-3 lg:row-span-2 p-4 rounded-lg">
