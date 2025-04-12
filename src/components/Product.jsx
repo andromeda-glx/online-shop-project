@@ -25,7 +25,7 @@ export default function Product({ product }) {
             }}
         >
             <div className="w-[100%] relative">
-                <img className="w-[100%]" src={thumbnail} alt="" />
+                <img className="w-[100%]" src={thumbnail} alt={title} />
                 <FavoriteIcon itemId={id} isFavorite={isFavorite} />
             </div>
             <div className="flex flex-col h-[100%] items-start gap-y-3">
