@@ -28,7 +28,7 @@ export default function MainLayout() {
             </main>
             <Footer handleClick={() => setCheckoutModalOpen(true)} />
             <Modal
-                style={"top-[50%] left-[50%] translate-[-50%] w-[80%] max-w-[1000px] max-h-[70%] overflow"}
+                style={"top-[50%] left-[50%] translate-[-50%] w-[90%] sm:w-[80%] max-w-[1000px] max-h-[70%] overflow"}
                 isOpen={checkoutModalOpen}
                 onClose={() => setCheckoutModalOpen(false)}
                 modalName={"checkout-modal"}
