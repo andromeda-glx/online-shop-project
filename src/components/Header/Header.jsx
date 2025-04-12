@@ -10,7 +10,7 @@ export default function Header({ handleCartClick }) {
     const numberOfItems = useCart(state => state.cartItems.reduce((total, item) => total + item.quantity, 0));
 
     return (
-        <header className="px-[67px] bg-gray-100 flex justify-between items-center max-w-[1500px] mx-auto py-3">
+        <header className="px-[10px] md:px-[67px] bg-gray-100 flex justify-between items-center max-w-[1500px] mx-auto py-3">
             <div className="flex items-center gap-x-3">
                 <TitleLogo />
                 <Navbar />
