@@ -2,8 +2,8 @@ import Button from "../components/Common/Button";
 import featuredImage from "../assets/images/offer-feature-banner.jpg"
 import { useQuery } from "@tanstack/react-query";
 import { getProducts } from "../services/products";
-import Product from "../components/Products/Product";
 import Spinner from "../components/Common/Spinner";
+import Products from "../components/Products/Products";
 
 export default function MainPage() {
     const productsQuery = useQuery({
@@ -25,18 +25,7 @@ export default function MainPage() {
             </div>
             {
                 productsQuery.isLoading ? <Spinner /> :
-                    <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 mb-10 items-stretch">
-                        {
-
-                            products.map(product =>
-                            (
-                                <li key={product.id}>
-                                    <Product product={product} />
-                                </li>
-                            )
-                            )
-                        }
-                    </ul>
+                    <Products products={products} />
             }
         </>
     )
