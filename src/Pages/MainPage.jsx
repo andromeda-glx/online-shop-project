@@ -3,7 +3,7 @@ import featuredImage from "../assets/images/offer-feature-banner.jpg"
 import { useQuery } from "@tanstack/react-query";
 import { getProducts } from "../services/products";
 import Spinner from "../components/Common/Spinner";
-import Products from "../components/Products/Products";
+import ProductList from "../components/Products/ProductList";
 
 export default function MainPage() {
     const productsQuery = useQuery({
@@ -25,7 +25,7 @@ export default function MainPage() {
             </div>
             {
                 productsQuery.isLoading ? <Spinner /> :
-                    <Products products={products} />
+                    <ProductList products={products} />
             }
         </>
     )
