@@ -1,8 +1,8 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
 import formatPrice from "../../utils/format-price";
-import Rating from "../Rating";
-import SpinnerControl from "../SpinnerControl";
+import Rating from "../Common/Rating";
+import SpinnerControl from "../Common/SpinnerControl";
 import useCart from "../../stores/cart";
 
 export default function CheckoutProduct({ product }) {

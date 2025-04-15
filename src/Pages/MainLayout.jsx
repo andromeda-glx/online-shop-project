@@ -4,10 +4,10 @@ import Footer from "../components/Footer/Footer";
 import Header from "../components/Header/Header";
 import TopHeader from "../components/Header/TopHeader";
 import { useState } from "react";
-import Modal from "../components/Modal";
+import Modal from "../components/Modal/Modal";
 import Checkout from "../components/Checkout/Checkout";
 import useProductModal from "../stores/product-modal";
-import ProductDetails from "../components/ProductDetails";
+import ProductDetails from "../components/Products/ProductDetails";
 
 export default function MainLayout() {
     const [checkoutModalOpen, setCheckoutModalOpen] = useState(false);

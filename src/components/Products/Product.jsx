@@ -1,11 +1,11 @@
 /* eslint-disable react/prop-types */
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import useCart from "../stores/cart";
-import useProductModal from "../stores/product-modal";
-import useWishList from "../stores/wishlist";
-import formatPrice from "../utils/format-price";
-import FavoriteIcon from "./FavoriteIcon";
-import Rating from "./Rating";
+import useCart from "../../stores/cart";
+import useProductModal from "../../stores/product-modal";
+import useWishList from "../../stores/wishlist";
+import formatPrice from "../../utils/format-price";
+import FavoriteIcon from "../Common/FavoriteIcon";
+import Rating from "../Common/Rating";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 
 export default function Product({ product }) {

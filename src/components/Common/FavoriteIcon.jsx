@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
-import useWishList from "../stores/wishlist";
-import HeartIcon from "./Icons/HeartIcon";
+import useWishList from "../../stores/wishlist";
+import HeartIcon from "../Icons/HeartIcon";
 
 export default function FavoriteIcon({ itemId, isFavorite }) {
     const addItem = useWishList(state => state.actions.addItem);

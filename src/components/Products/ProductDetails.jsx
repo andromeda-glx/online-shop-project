@@ -1,16 +1,16 @@
 import { useQuery } from "@tanstack/react-query";
-import useProductModal from "../stores/product-modal"
-import { getProduct } from "../services/products";
-import Rating from "./Rating";
-import formattedPrice from "../utils/format-price";
-import Spinner from "./Spinner";
+import useProductModal from "../../stores/product-modal"
+import { getProduct } from "../../services/products";
+import Rating from "../Common/Rating";
+import formattedPrice from "../../utils/format-price";
+import Spinner from "../Common/Spinner";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping, faRotateLeft, faTruck } from "@fortawesome/free-solid-svg-icons";
-import SizeButtons from "./SizeButtons";
-import useCart from "../stores/cart";
-import formatPrice from "../utils/format-price";
+import SizeButtons from "../Common/SizeButtons";
+import useCart from "../../stores/cart";
+import formatPrice from "../../utils/format-price";
 import { useEffect, useState } from "react";
-import SpinnerControl from "./SpinnerControl";
+import SpinnerControl from "../Common/SpinnerControl";
 
 export default function ProductDetails() {
     const productId = useProductModal(state => state.productId);

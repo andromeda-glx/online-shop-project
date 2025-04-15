@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Navbar from "./Navbar";
 import { faUser } from "@fortawesome/free-regular-svg-icons";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
-import TitleLogo from "../TitleLogo";
+import TitleLogo from "./TitleLogo";
 import useCart from "../../stores/cart";
 
 export default function Header({ handleCartClick }) {

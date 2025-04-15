@@ -1,9 +1,9 @@
-import Button from "../components/Button";
+import Button from "../components/Common/Button";
 import featuredImage from "../assets/images/offer-feature-banner.jpg"
 import { useQuery } from "@tanstack/react-query";
 import { getProducts } from "../services/products";
-import Product from "../components/Product";
-import Spinner from "../components/Spinner";
+import Product from "../components/Products/Product";
+import Spinner from "../components/Common/Spinner";
 
 export default function MainPage() {
     const productsQuery = useQuery({
