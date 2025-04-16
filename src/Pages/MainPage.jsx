@@ -25,9 +25,9 @@ export default function MainPage() {
                 </div>
             </div>
             {
-                productsQuery.isLoading ? <Spinner /> :
-                    // <ProductList products={products} />
-                    <SkeletonProducts numberOfContainers={6} />
+                productsQuery.isLoading ? <SkeletonProducts numberOfContainers={6} /> :
+                    <ProductList products={products} />
+
             }
         </>
     )
