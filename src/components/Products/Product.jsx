@@ -7,9 +7,11 @@ import formatPrice from "../../utils/format-price";
 import FavoriteIcon from "../Common/FavoriteIcon";
 import Rating from "../Common/Rating";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
+import { useState } from "react";
 
 export default function Product({ product }) {
     const { id, title, thumbnail, price, rating, description } = product;
+    const [isMouseOver, setIsMouseOver] = useState();
 
     const setProductId = useProductModal((state) => state.setProductId);
     const setProductModalOpen = useProductModal((state) => state.setProductModalOpen);
@@ -23,6 +25,8 @@ export default function Product({ product }) {
                 setProductId(id);
                 setProductModalOpen(true);
             }}
+            onMouseOver={() => setIsMouseOver(true)}
+            onMouseOut={() => setIsMouseOver(false)}
         >
             <div className="w-[100%] relative">
                 <img className="w-[100%] aspect-square" src={thumbnail} alt={title} />
@@ -40,12 +44,12 @@ export default function Product({ product }) {
                     <Rating rating={rating} />
                 </div>
             </div>
-            {isInCart &&
-                <span className="absolute inset-0 bg-green-700/30 rounded-md flex justify-center items-center">
-                <span className="w-15 h-15 bg-gray-100 flex items-center justify-center rounded-full text-green-600">
-                    <FontAwesomeIcon icon={faCartShopping} size="xl" />
+            {(isInCart && isMouseOver) &&
+                <span className="absolute inset-0 bg-green-700/30 rounded-md flex justify-center items-center transition-colors">
+                    <span className="w-15 h-15 bg-gray-100 flex items-center justify-center rounded-full text-green-600 hover:scale-101">
+                        <FontAwesomeIcon icon={faCartShopping} size="xl" />
+                    </span>
                 </span>
-            </span>
             }
         </div>
     )
