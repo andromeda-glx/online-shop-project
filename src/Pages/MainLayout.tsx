@@ -9,7 +9,7 @@ import Checkout from "../components/Checkout/Checkout";
 import useProductModal from "../stores/product-modal";
 import ProductDetails from "../components/Products/ProductDetails";
 
-export default function MainLayout() {
+const MainLayout = () => {
     const [checkoutModalOpen, setCheckoutModalOpen] = useState(false);
     const setProductModalOpen = useProductModal((state) => state.setProductModalOpen);
     const productModalOpen = useProductModal((state) => state.productModalOpen);
@@ -46,3 +46,5 @@ export default function MainLayout() {
         </>
     )
 }
+
+export default MainLayout;
