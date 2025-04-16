@@ -10,7 +10,7 @@ type CheckoutProductProps = {
 }
 
 const CheckoutProduct = ({ product }: CheckoutProductProps) => {
-    const [quantity, setQuantity] = useState(product.quantityInCart || 0);
+    const [quantity, setQuantity] = useState(product.quantity || 0);
 
     const editItem = useCart((state) => state.actions.editItem);
     const setTotalPrice = useCart((state) => state.actions.setTotalPrice);
