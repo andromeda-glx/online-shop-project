@@ -5,5 +5,5 @@ export type Product = {
   price: number;
   rating: number;
   description: string;
-  quantityInCart?: number;
+  quantity?: number;
 };
