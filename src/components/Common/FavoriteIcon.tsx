@@ -1,8 +1,12 @@
-/* eslint-disable react/prop-types */
 import useWishList from "../../stores/wishlist";
 import HeartIcon from "../Icons/HeartIcon";
 
-export default function FavoriteIcon({ itemId, isFavorite }) {
+type FavoriteIconProps = {
+    itemId: string;
+    isFavorite: boolean
+}
+
+const FavoriteIcon = ({ itemId, isFavorite }: FavoriteIconProps) => {
     const addItem = useWishList(state => state.actions.addItem);
     const removeItem = useWishList(state => state.actions.removeItem);
 
@@ -18,8 +22,9 @@ export default function FavoriteIcon({ itemId, isFavorite }) {
             <HeartIcon
                 stroke={isFavorite ? "#F61B5A" : "#999999"}
                 fill={isFavorite ? "#F61B5A" : "transparent"}
-                hover={"#F61B5A"}
             />
         </span>
     )
 }
+
+export default FavoriteIcon;
