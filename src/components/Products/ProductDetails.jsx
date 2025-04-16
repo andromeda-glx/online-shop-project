@@ -71,7 +71,7 @@ export default function ProductDetails() {
                     productQuery.isLoading ? <Spinner /> :
                         <div>
                             <div className="w-[100%] flex justify-center">
-                                <img src={product.thumbnail} alt="" />
+                                <img className="w-[100%] aspect-square" src={product.thumbnail} alt={product.title} />
                             </div>
                             <div className="flex justify-between items-center mb-5">
                                 <h2 className="w-[70%] text-xl">
