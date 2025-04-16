@@ -1,5 +1,11 @@
-/* eslint-disable react/prop-types */
-export default function CheckoutInvoice({ title, value, titleStyles, valueStyles }) {
+type CheckoutInvoiceProps = {
+    title: string;
+    value: string;
+    titleStyles: string;
+    valueStyles: string;
+}
+
+const CheckoutInvoice = ({ title, value, titleStyles, valueStyles }: CheckoutInvoiceProps) => {
     return (
         <div>
             <h3
@@ -15,3 +21,5 @@ export default function CheckoutInvoice({ title, value, titleStyles, valueStyles
         </div>
     )
 }
+
+export default CheckoutInvoice;
