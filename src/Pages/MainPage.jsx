@@ -2,7 +2,6 @@ import Button from "../components/Common/Button";
 import featuredImage from "../assets/images/offer-feature-banner.jpg"
 import { useQuery } from "@tanstack/react-query";
 import { getProducts } from "../services/products";
-import Spinner from "../components/Common/Spinner";
 import ProductList from "../components/Products/ProductList";
 import SkeletonProducts from "../components/Products/SkeletonProducts";
 
