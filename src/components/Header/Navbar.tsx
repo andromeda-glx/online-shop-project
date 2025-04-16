@@ -2,7 +2,7 @@ import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react"
 
-export default function Navbar() {
+const Navbar = () => {
     const [dropboxOpen, setDropboxOpen] = useState(false);
 
     return (
@@ -32,3 +32,5 @@ export default function Navbar() {
         </>
     )
 }
+
+export default Navbar;
