@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Navbar from "./Navbar";
 import { faUser } from "@fortawesome/free-regular-svg-icons";
@@ -6,8 +5,14 @@ import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import TitleLogo from "./TitleLogo";
 import useCart from "../../stores/cart";
 
-export default function Header({ handleCartClick }) {
-    const numberOfItems = useCart(state => state.cartItems.reduce((total, item) => total + item.quantity, 0));
+type HeaderProps = {
+    handleCartClick: () => void;
+}
+
+// TODO: fix the type of item (currently any)
+
+const Header = ({ handleCartClick }: HeaderProps) => {
+    const numberOfItems = useCart(state => state.cartItems.reduce((total: number, item: any) => total + item.quantity, 0));
 
     return (
         <header className="px-[10px] md:px-[67px] bg-gray-100 flex justify-between items-center max-w-[1500px] mx-auto py-3">
@@ -43,3 +48,5 @@ export default function Header({ handleCartClick }) {
         </header>
     )
 }
+
+export default Header;
