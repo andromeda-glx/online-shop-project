@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router'
-import MainLayout from './Pages/MainLayout'
-import MainPage from './Pages/MainPage'
+import MainLayout from './pages/MainLayout'
+import MainPage from './pages/MainPage'
 
 function App() {
     return (
