@@ -1,9 +1,11 @@
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 
-export default function useOnClickOutside(ref, handleOnClickOutside) {
+// TODO: fix event's type (currently any)
+
+const useOnClickOutside = (ref: React.RefObject<HTMLInputElement>, handleOnClickOutside: (e: MouseEvent | TouchEvent) => void) => {
     
     useEffect(() => {
-        const listener = (event) => {
+        const listener = (event: any) => {
             if (!ref.current || ref.current.contains(event.target)){
                 return;
             }
@@ -20,3 +22,4 @@ export default function useOnClickOutside(ref, handleOnClickOutside) {
     }, [ref, handleOnClickOutside]);
 };
 
+export default useOnClickOutside;
