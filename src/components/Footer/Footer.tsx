@@ -7,10 +7,16 @@ import useCart from "../../stores/cart";
 import useWishList from "../../stores/wishlist";
 import formatPrice from "../../utils/format-price";
 
-export default function Footer({ handleClick }) {
+type FooterProps = {
+    handleClick: () => void;
+}
+
+// TODO: fix the type of item (currently any)
+
+const Footer = ({ handleClick }: FooterProps) => {
     const cartItems = useCart(state => state.cartItems);
     const totalPrice = useCart(state => state.invoice.totalPrice);
-    const numberOfItems = cartItems.reduce((total, item) => total + item.quantity, 0);
+    const numberOfItems = cartItems.reduce((total: number, item: any) => total + item.quantity, 0);
     const numberOfFavorites = useWishList(state => state.itemIds.length);
 
     return (
@@ -37,3 +43,5 @@ export default function Footer({ handleClick }) {
         </footer>
     )
 }
+
+export default Footer;
