@@ -1,4 +1,4 @@
-export default function Skeleton() {
+const Skeleton = () => {
     return (
         <div className="w-[100%] h-[100%] flex flex-col gap-y-3 bg-white p-2 shadow rounded-md hover:scale-101 cursor-pointer transition-transform relative">
             <div className="w-[100%] relative">
@@ -19,3 +19,5 @@ export default function Skeleton() {
         </div>
     )
 }
+
+export default Skeleton;
