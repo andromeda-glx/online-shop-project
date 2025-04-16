@@ -1,8 +1,8 @@
 type CheckoutInvoiceProps = {
     title: string;
     value: string;
-    titleStyles: string;
-    valueStyles: string;
+    titleStyles?: string;
+    valueStyles?: string;
 }
 
 const CheckoutInvoice = ({ title, value, titleStyles, valueStyles }: CheckoutInvoiceProps) => {
