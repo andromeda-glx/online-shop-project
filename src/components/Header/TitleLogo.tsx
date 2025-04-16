@@ -1,10 +1,8 @@
-import img from "../../assets/logos/logo.png"
-
-export default function TitleLogo() {
+const TitleLogo = () => {
     return (
         <div className="flex items-center">
             <div className="w-[55px]">
-                <img className="w-[100%]" src={img} alt="" />
+                <img className="w-[100%]" src={"/logo.png"} alt="MinimalMarket logo" />
             </div>
             <span className="text-2xl text-main-theme font-semibold hidden lg:block">
                 Minimal 
@@ -13,3 +11,5 @@ export default function TitleLogo() {
         </div>
     )
 }
+
+export default TitleLogo;
