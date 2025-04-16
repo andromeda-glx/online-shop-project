@@ -12,12 +12,14 @@ import formatPrice from "../../utils/format-price";
 import { useEffect, useState } from "react";
 import SpinnerControl from "../Common/SpinnerControl";
 
-export default function ProductDetails() {
+// TODO: fix the type of item (currently any)
+
+const ProductDetails = () => {
     const productId = useProductModal(state => state.productId);
     const setProductModalOpen = useProductModal(state => state.setProductModalOpen);
 
     /* checks if item is already in the cart or not */
-    const [quantity, setQuantity] = useState(useCart(state => state.cartItems.find(item => item.id === productId)?.quantity) || 0);
+    const [quantity, setQuantity] = useState(useCart(state => state.cartItems.find((item: any) => item.id === productId)?.quantity) || 0);
 
     const addItem = useCart(state => state.actions.addItem);
     const totalPrice = useCart(state => state.invoice.totalPrice);
@@ -32,13 +34,13 @@ export default function ProductDetails() {
     const product = productQuery?.data?.data;
 
     /* This function adds the product to the list for the first time */
-    function handleSubmit(e) {
+    function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
         setQuantity(1);
         addItem({ id: product.id, price: product.price });
     }
 
-    function handleChange(e) {
+    function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
         const newValue = Number(e.target.value);
         if (newValue) {
             setQuantity(newValue);
@@ -48,12 +50,12 @@ export default function ProductDetails() {
         }
     }
 
-    function handleClick(amount) {
+    function handleClick(amount: number) {
         if (amount > 0) {
-            setQuantity(prev => prev + amount < 999 ? prev + amount : prev);
+            setQuantity((prev: number) => prev + amount < 999 ? prev + amount : prev);
         }
         else {
-            setQuantity(prev => prev + amount >= 0 ? prev + amount : prev)
+            setQuantity((prev: number) => prev + amount >= 0 ? prev + amount : prev)
         }
     }
 
@@ -152,3 +154,5 @@ export default function ProductDetails() {
         </div>
     )
 }
+
+export default ProductDetails;
