@@ -25,7 +25,7 @@ export default function MainPage() {
                 </div>
             </div>
             {
-                productsQuery.isLoading ? <SkeletonProducts numberOfContainers={6} /> :
+                productsQuery.isLoading ? <SkeletonProducts numberOfContainers={12} /> :
                     <ProductList products={products} />
 
             }
