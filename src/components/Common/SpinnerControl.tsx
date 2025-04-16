@@ -1,8 +1,13 @@
 import { faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-// eslint-disable-next-line react/prop-types
-export default function SpinnerControl({ quantity, handleChange, handleClick }) {
+type SpinnerControlProps = {
+    quantity: number;
+    handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    handleClick: (amount: number) => void;
+}
+
+const SpinnerControl = ({ quantity, handleChange, handleClick }: SpinnerControlProps) => {
     return (
         <div
             className="inline-flex justify-between items-center w-fit border-2 border-secondary-theme rounded-sm"
@@ -30,3 +35,5 @@ export default function SpinnerControl({ quantity, handleChange, handleClick }) 
         </div>
     )
 }
+
+export default SpinnerControl;
