@@ -1,7 +1,7 @@
 import { useState } from "react";
 import SizeButton from "./SizeButton";
 
-export default function SizeButtons() {
+const SizeButtons = () => {
     const [sizeChecked, setSizeChecked] = useState('s');
 
     return (
@@ -44,3 +44,5 @@ export default function SizeButtons() {
         </div>
     )
 }
+
+export default SizeButtons;
