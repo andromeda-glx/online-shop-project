@@ -1,28 +1,32 @@
-/* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
 import formatPrice from "../../utils/format-price";
 import Rating from "../Common/Rating";
 import SpinnerControl from "../Common/SpinnerControl";
 import useCart from "../../stores/cart";
+import { Product } from "../../types/product";
 
-export default function CheckoutProduct({ product }) {
-    const [quantity, setQuantity] = useState(product.quantity);
+type CheckoutProductProps = {
+    product: Product;
+}
+
+const CheckoutProduct = ({ product }: CheckoutProductProps) => {
+    const [quantity, setQuantity] = useState(product.quantityInCart || 0);
 
     const editItem = useCart((state) => state.actions.editItem);
     const setTotalPrice = useCart((state) => state.actions.setTotalPrice);
 
     const { id, title, thumbnail, price, rating, description } = product;
 
-    function handleClick(amount) {
+    function handleClick(amount: number) {
         if (amount > 0) {
-            setQuantity(prev => prev + amount < 999 ? prev + amount : prev);
+            setQuantity((prev: number) => prev + amount < 999 ? prev + amount : prev);
         }
         else {
-            setQuantity(prev => prev + amount >= 0 ? prev + amount : prev);
+            setQuantity((prev: number) => prev + amount >= 0 ? prev + amount : prev);
         }
     }
 
-    function handleChange(e) {
+    function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
         const newValue = Number(e.target.value);
         if (newValue) {
             setQuantity(newValue);
@@ -59,3 +63,4 @@ export default function CheckoutProduct({ product }) {
     )
 }
 
+export default CheckoutProduct;
