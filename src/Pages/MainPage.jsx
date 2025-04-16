@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import { getProducts } from "../services/products";
 import Spinner from "../components/Common/Spinner";
 import ProductList from "../components/Products/ProductList";
+import SkeletonProducts from "../components/Products/SkeletonProducts";
 
 export default function MainPage() {
     const productsQuery = useQuery({
@@ -25,7 +26,8 @@ export default function MainPage() {
             </div>
             {
                 productsQuery.isLoading ? <Spinner /> :
-                    <ProductList products={products} />
+                    // <ProductList products={products} />
+                    <SkeletonProducts numberOfContainers={6} />
             }
         </>
     )

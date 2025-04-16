@@ -1,4 +1,4 @@
-import img from "../assets/logos/logo.png"
+import img from "../../assets/logos/logo.png"
 
 export default function TitleLogo() {
     return (
