@@ -1,5 +1,9 @@
-/* eslint-disable react/prop-types */
-export default function HeartIcon({ stroke, fill }) {
+type HeartIconProps = {
+    stroke: string;
+    fill: string;
+}
+
+const HeartIcon = ({ stroke, fill }: HeartIconProps) => {
     return (
         <svg
             width="18"
@@ -20,3 +24,5 @@ export default function HeartIcon({ stroke, fill }) {
         </svg>
     )
 }
+
+export default HeartIcon;
