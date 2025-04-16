@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import useCart from "../../stores/cart";
 import useProductModal from "../../stores/product-modal";
@@ -8,15 +7,18 @@ import FavoriteIcon from "../Common/FavoriteIcon";
 import Rating from "../Common/Rating";
 import { faCartShopping, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
+import { Product as ProductType } from "../../types/product";
 
-export default function Product({ product }) {
-    const { id, title, thumbnail, price, rating, description } = product;
-    const [isMouseOver, setIsMouseOver] = useState();
+// TODO: fix the type of item (currently any)
+
+const Product = ({ id, title, thumbnail, price, rating, description }: ProductType) => {
+    // State needs to be initialized in TypeScript
+    const [isMouseOver, setIsMouseOver] = useState(false);
 
     const setProductId = useProductModal((state) => state.setProductId);
     const setProductModalOpen = useProductModal((state) => state.setProductModalOpen);
     const isFavorite = useWishList((state) => state.itemIds.includes(id));
-    const isInCart = useCart(state => state.cartItems.some(item => item.id === id));
+    const isInCart = useCart(state => state.cartItems.some((item: any) => item.id === id));
 
     return (
         <div
@@ -65,3 +67,5 @@ export default function Product({ product }) {
         </div>
     )
 }
+
+export default Product;
