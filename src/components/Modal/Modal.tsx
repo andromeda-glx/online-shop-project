@@ -5,8 +5,15 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { AnimatePresence, motion } from "motion/react";
 
-/* eslint-disable react/prop-types */
-export default function Modal({ style, isOpen, onClose, children, modalName }) {
+type ModalProps = {
+    style: string;
+    isOpen: boolean;
+    onClose: () => void;
+    children: React.ReactNode;
+    modalName?: string;
+}
+
+const Modal = ({ style, isOpen, onClose, children, modalName }: ModalProps) => {
     const modalRef = useRef(null);
 
     useOnClickOutside(modalRef, onClose);
@@ -41,3 +48,5 @@ export default function Modal({ style, isOpen, onClose, children, modalName }) {
             , document.body, modalName)
     )
 }
+
+export default Modal;
