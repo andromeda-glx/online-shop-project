@@ -6,7 +6,7 @@ import useWishList from "../../stores/wishlist";
 import formatPrice from "../../utils/format-price";
 import FavoriteIcon from "../Common/FavoriteIcon";
 import Rating from "../Common/Rating";
-import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
+import { faCartShopping, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 
 export default function Product({ product }) {
@@ -44,10 +44,21 @@ export default function Product({ product }) {
                     <Rating rating={rating} />
                 </div>
             </div>
-            {(isInCart && isMouseOver) &&
-                <span className="absolute inset-0 bg-green-700/30 rounded-md flex justify-center items-center transition-colors">
-                    <span className="w-15 h-15 bg-gray-100 flex items-center justify-center rounded-full text-green-600 hover:scale-101">
-                        <FontAwesomeIcon icon={faCartShopping} size="xl" />
+            {(isMouseOver) &&
+                <span
+                    className={`absolute inset-0 ${isInCart ? "bg-red-700/15" : "bg-green-700/15"} rounded-md flex justify-center items-center transition-colors`}
+                >
+                    <span
+                        className={`w-15 h-15 bg-gray-100 flex items-center justify-center rounded-full ${isInCart ? "text-red-600" : "text-green-600"} hover:scale-101`}
+                    >
+                        {isInCart ?
+                            <FontAwesomeIcon
+                                icon={faTrash} size="xl"
+                            /> :
+                            <FontAwesomeIcon
+                                icon={faCartShopping} size="xl"
+                            />
+                        }
                     </span>
                 </span>
             }
