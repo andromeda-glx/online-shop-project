@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import useCart from "../../stores/cart";
 import useProductModal from "../../stores/product-modal";
-import useWishList from "../../stores/wishlist";
+import useWishlist from "../../stores/wishlist";
 import formatPrice from "../../utils/format-price";
 import FavoriteIcon from "../Common/FavoriteIcon";
 import Rating from "../Common/Rating";
@@ -24,7 +24,7 @@ const Product = ({ productDetails }: ProductProps) => {
   const setProductModalOpen = useProductModal(
     (state) => state.setProductModalOpen
   );
-  const isFavorite = useWishList((state) => state.itemIds.includes(id));
+  const isFavorite = useWishlist((state) => state.itemIds.includes(id));
   const isInCart = useCart((state) =>
     state.cartItems.some((item: any) => item.id === id)
   );

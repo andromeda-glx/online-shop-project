@@ -1,4 +1,4 @@
-import useWishList from "../../stores/wishlist";
+import useWishlist from "../../stores/wishlist";
 import HeartIcon from "../Icons/HeartIcon";
 
 type FavoriteIconProps = {
@@ -7,8 +7,8 @@ type FavoriteIconProps = {
 }
 
 const FavoriteIcon = ({ itemId, isFavorite }: FavoriteIconProps) => {
-    const addItem = useWishList(state => state.actions.addItem);
-    const removeItem = useWishList(state => state.actions.removeItem);
+    const addItem = useWishlist(state => state.actions.addItem);
+    const removeItem = useWishlist(state => state.actions.removeItem);
 
     return (
         <span

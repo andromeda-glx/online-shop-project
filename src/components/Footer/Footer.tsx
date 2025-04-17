@@ -4,7 +4,7 @@ import { faShoppingBag } from "@fortawesome/free-solid-svg-icons";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons/faShoppingCart";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import useCart from "../../stores/cart";
-import useWishList from "../../stores/wishlist";
+import useWishlist from "../../stores/wishlist";
 import formatPrice from "../../utils/format-price";
 
 type FooterProps = {
@@ -17,7 +17,7 @@ const Footer = ({ handleClick }: FooterProps) => {
     const cartItems = useCart(state => state.cartItems);
     const totalPrice = useCart(state => state.invoice.totalPrice);
     const numberOfItems = cartItems.reduce((total: number, item: any) => total + item.quantity, 0);
-    const numberOfFavorites = useWishList(state => state.itemIds.length);
+    const numberOfFavorites = useWishlist(state => state.itemIds.length);
 
     return (
         <footer className="bg-main-theme text-white px-5 flex justify-between items-center py-4">
