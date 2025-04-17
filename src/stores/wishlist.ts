@@ -1,6 +1,14 @@
 import { create } from "zustand";
 
-const useWishList = create((set) => {
+interface WishlistState {
+    itemIds: string[];
+    actions: {
+        addItem: (itemId: string) => void;
+        removeItem: (itemId: string) => void;
+    }
+}
+
+const useWishList = create<WishlistState>((set) => {
     return {
         itemIds: [],
         actions: {
