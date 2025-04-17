@@ -5,7 +5,7 @@ interface WishlistState {
     actions: {
         addItem: (itemId: string) => void;
         removeItem: (itemId: string) => void;
-    }
+    };
 }
 
 const useWishList = create<WishlistState>((set) => {
@@ -15,19 +15,21 @@ const useWishList = create<WishlistState>((set) => {
             addItem: (itemId) => {
                 set((state) => {
                     return {
-                        itemIds: [...state.itemIds, itemId]
-                    }
-                })
+                        itemIds: [...state.itemIds, itemId],
+                    };
+                });
             },
             removeItem: (itemId) => {
                 set((state) => {
                     return {
-                        itemIds: state.itemIds.filter(item => item !== itemId)
-                    }
-                })
-            }
-        }
-    }
+                        itemIds: state.itemIds.filter(
+                            (item) => item !== itemId
+                        ),
+                    };
+                });
+            },
+        },
+    };
 });
 
 export default useWishList;
