@@ -1,6 +1,27 @@
 import { create } from "zustand";
 
-const useCart = create((set) => {
+type CartItem = {
+    id: string;
+    quantity?: number;
+    price: number;
+};
+
+interface CartState {
+    cartItems: CartItem[];
+    invoice: {
+        totalQuantity: number;
+        totalPrice: number;
+        taxAmount: number;
+    };
+    actions: {
+        addItem: (item: CartItem) => void;
+        editItem: (item: CartItem) => void;
+        setTotalPrice: () => void;
+        setTotalQuantity: (quantity: number) => void;
+    };
+}
+
+const useCart = create<CartState>((set) => {
     return {
         /* cartItems stores {id, quantity, price} */
         /* price will be renewed when user opens the checkout and fetches the requested products again */
@@ -50,7 +71,7 @@ const useCart = create((set) => {
                             ...state.invoice,
                             totalPrice: state.cartItems.reduce(
                                 (total, item) =>
-                                    total + item.price * item.quantity,
+                                    total + item.price * (item.quantity || 0),
                                 0
                             ),
                         },
